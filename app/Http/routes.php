@@ -19,6 +19,29 @@ Route::get('/2', function () {
     return view('front.index2');
 });
 
+Route::get('/3', function () {
+    return view('front.index3');
+});
+
+Route::get('/4', function () {
+    return view('front.index4');
+});
+
+Route::get('/5', function () {
+    return view('front.index5');
+});
+
+Route::get('/6', function () {
+    return view('front.index6');
+});
+
+	Route::resource('front', 'FrontController');
+	Route::get('front/{id}/destroy',[
+		'uses' => 'FrontController@destroy',
+		'as'   => 'Front.destroy'
+	]);
+
+
 
 	Route::resource('bombas', 'BombasController');
 	Route::get('bombas/{id}/destroy',[

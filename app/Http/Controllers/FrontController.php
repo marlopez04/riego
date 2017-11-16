@@ -48,7 +48,8 @@ class FrontController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('front.index3');
+        
     }
 
     /**
@@ -59,7 +60,23 @@ class FrontController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        if ($id == 3) {
+            return view('front.index3');
+            
+        }
+
+        if ($id == 4) {
+            return view('front.index4');
+        }
+
+        if ($id == 5) {
+            return view('front.index5');
+        }
+
+        if ($id == 6) {
+            return view('front.index6');
+        }
     }
 
     /**
