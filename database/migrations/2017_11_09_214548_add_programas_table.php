@@ -14,6 +14,12 @@ class AddProgramasTable extends Migration
     {
         Schema::create('programas', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('descripcion');
+            $table->string('nombre');
+            $table->double('espera', 10, 0);
+            $table->double('riego', 10, 0);
+            $table->double('ciclos', 10, 0);
+            $table->double('programasiguiente', 10, 0);
             $table->timestamps();
         });
     }
