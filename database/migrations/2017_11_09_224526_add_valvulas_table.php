@@ -18,10 +18,7 @@ class AddValvulasTable extends Migration
             $table->string('descripcion');
             $table->string('nombre');
             $table->timestamp('ultimoriego');
-            $table->integer('id_programa')->unsigned();
             $table->enum('estado',['habierta', 'cerrada'])->default('cerrada');
-            $table->integer('programa_id')->unsigned();
-            $table->foreign('programa_id')->references('id')->on('programas');
             $table->integer('bomba_id')->unsigned();
             $table->foreign('bomba_id')->references('id')->on('bombas');
             $table->integer('zonariego_id')->unsigned();
