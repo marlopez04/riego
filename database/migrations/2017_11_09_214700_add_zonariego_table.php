@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddBombasTable extends Migration
+class AddZonariegoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,8 @@ class AddBombasTable extends Migration
     {
         Schema::create('zonariego', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('direccion');
+            $table->string('descripcion');
+            $table->enum('stat',['offline', 'online'])->default('online');
             $table->timestamps();
         });
     }

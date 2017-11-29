@@ -20,6 +20,7 @@ class AddProgramasTable extends Migration
             $table->double('riego', 10, 0);
             $table->double('ciclos', 10, 0);
             $table->double('programasiguiente', 10, 0);
+            $table->enum('stat',['offline', 'online'])->default('online');
             $table->timestamps();
         });
     }

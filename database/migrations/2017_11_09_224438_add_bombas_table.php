@@ -19,6 +19,7 @@ class AddBombasTable extends Migration
             $table->string('nombre');
             $table->timestamp('ultimoriego');
             $table->enum('estado',['prendida', 'apagada'])->default('apagada');
+            $table->enum('stat',['offline', 'online'])->default('online');
             $table->integer('zonariego_id')->unsigned();
             $table->foreign('zonariego_id')->references('id')->on('zonariego');
             $table->timestamps();
