@@ -16,7 +16,7 @@ class ProgramasController extends Controller
      */
     public function index()
     {
-        //
+        return view('front.programas.index');
     }
 
     /**
@@ -26,7 +26,7 @@ class ProgramasController extends Controller
      */
     public function create()
     {
-        //
+        return view('front.programas.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class ProgramasController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('front.programas.edit');
     }
 
     /**

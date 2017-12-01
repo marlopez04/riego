@@ -11,9 +11,31 @@
 |
 */
 
-Route::get('/', function () {
+
+/*
+Route::get('/', [
+	'as' => 'front.index',
+	'uses' => 'FrontController@index'
+
+
+]);
+*/
+
+Route::group(['prefix'=>'/'], function(){
+	
+	Route::get('/',['as' => 'front.index', function () {
     return view('front.index');
+	}]);
+
+	Route::resource('programas', 'ProgramasController');
+	Route::get('programas/{id}/destroy',[
+		'uses' => 'ProgramasController@destroy',
+		'as'   => 'programas.destroy'
+	]);
+
+
 });
+
 
 Route::get('/2', function () {
     return view('front.index2');
