@@ -16,10 +16,12 @@ class AddProgramasTable extends Migration
             $table->increments('id');
             $table->string('descripcion');
             $table->string('nombre');
-            $table->double('espera', 10, 0);
-            $table->double('riego', 10, 0);
-            $table->double('ciclos', 10, 0);
-            $table->double('programasiguiente', 10, 0);
+            $table->string('espera');
+            $table->double('espera_s', 10, 0);
+            $table->string('riego');
+            $table->double('riego_s', 10, 0);
+            $table->integer('ciclos')->unsigned();
+            $table->integer('programasiguiente')->unsigned();
             $table->enum('stat',['offline', 'online'])->default('online');
             $table->timestamps();
         });

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Programa;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +18,10 @@ class ProgramasController extends Controller
      */
     public function index()
     {
-        return view('front.programas.index');
+        $programas = Programa::orderBy('id', 'DSC')->paginate(8);
+
+        return view('front.programas.index')
+            ->with('programas', $programas);
     }
 
     /**
@@ -26,7 +31,10 @@ class ProgramasController extends Controller
      */
     public function create()
     {
-        return view('front.programas.create');
+        $programas = Programa::orderBy('nombre', 'ASC')->lists('nombre', 'id');
+
+        return view('front.programas.create')
+            ->with('programas', $programas);
     }
 
     /**
@@ -37,7 +45,19 @@ class ProgramasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $programa = new Programa($request->all());
+
+//paso todos los tiempos a segundos y los guardo
+
+        $programa->riego_s = $request->riego * 60;
+        $programa->espera = $request->horas_e . ':' . $request->minutos_e;
+        $programa->espera_s = (($request->horas_e * 60)*60)  +  ($request->minutos_e * 60);
+        $programa->save();
+
+//        Flash::success('Se ha creado el articulo '. $receta->nombre . ' de forma satisfactoria!');
+
+        return redirect()->route('programas.index');
+
     }
 
     /**
@@ -59,7 +79,14 @@ class ProgramasController extends Controller
      */
     public function edit($id)
     {
-        return view('front.programas.edit');
+        
+        $programa = Programa::find($id);
+        $programas = Programa::orderBy('nombre', 'ASC')->lists('nombre', 'id');
+
+        return view('front.programas.edit')
+            ->with('programa', $programa)
+            ->with('programas', $programas);
+
     }
 
     /**

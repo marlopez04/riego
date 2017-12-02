@@ -13,28 +13,36 @@
 					<div class="col-md-3"></div>
 
 					<div class="col-md-6">
-	{!! Form::open(['route' => 'programas.store', 'method' => 'POST', 'files' => true]) !!}
-		<div class="form-group">
-			<h4>Nombre</h4>
-			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Nombre del articulo', 'required'])!!}
-		</div>
-		<div class="form-group">
-		<h4>Tiempo de Riego</h4>
-       		{!! Form::select('horas', ['00' => 00, '01' => 01], null, ['class'=> 'tipo'])!!}
+	<table class="table table-striped">
+		<thead>
+			<th>ID</th>
+			<th>Nombre</th>
+			<th>Riego</th>
+			<th>Espera</th>
+			<th>Ciclos</th>
+			<th>Modificar / Borrar</th>
+		</thead>
+		<tbody>
+			@foreach($programas as $programa)
+				<tr>
+					<td>{{ $programa->id }}</td>
+					<td>{{ $programa->nombre }}</td>
+					<td>{{ $programa->riego }} min</td>
+					<td>{{ $programa->espera }}hs</td>
+					<td>{{ $programa->ciclos }}</td>
+					<td>
+						<a href="{{ route('programas.edit', $programa->id) }}" class="btn btn-warning" style="color:#ffffff"> <span class="glyphicon glyphicon-wrench"></span></a>
+						
+						<a href="{{ route('programas.destroy', $programa->id) }}" onclick="return confirm('¿Seguro que deseas eliminarlo?')" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a>
+					</td>
+				</tr>
+			@endforeach
+		</tbody>
+	</table>
+	<div class="text-center">
+		{!! $programas->render()!!}
+	</div>
 
-		<div class="form-group">
-		<h4>Tiempo de Espera</h4>
-			{!!	Form::number('espera',null,["size"=>"2", "min"=>"0", "max"=>"24", "value"=>"0", 'style'=>'width:340px' ])!!}
-
-			{!!	Form::number('espera',null,["size"=>"2", "min"=>"0", "max"=>"59", "value"=>"0"])!!}
-		</div>
-
-		<div class="form-group">
-			{!! Form::submit('Guardar Programa',['class' => 'btn btn-success btn-lg btn-block', 'style'=>'color:#ffffff']) !!}
-		</div>
-		
-
-	{!! Form::close() !!}
 
 					</div>
 						
