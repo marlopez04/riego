@@ -16,8 +16,9 @@ class AddProgramasTable extends Migration
             $table->increments('id');
             $table->string('descripcion');
             $table->string('nombre');
-            $table->string('espera');
             $table->double('espera_s', 10, 0);
+            $table->integer('horas_e')->unsigned();
+            $table->integer('minutos_e')->unsigned();
             $table->string('riego');
             $table->double('riego_s', 10, 0);
             $table->integer('ciclos')->unsigned();
