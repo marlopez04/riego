@@ -28,7 +28,7 @@
 					<td>{{ $programa->id }}</td>
 					<td>{{ $programa->nombre }}</td>
 					<td>{{ $programa->riego }} min</td>
-					<td>{{ $programa->espera }}hs</td>
+					<td>{{ $programa->horas_e }} : {{ $programa->minutos_e }} hs</td>
 					<td>{{ $programa->ciclos }}</td>
 					<td>
 						<a href="{{ route('programas.edit', $programa->id) }}" class="btn btn-warning" style="color:#ffffff"> <span class="glyphicon glyphicon-wrench"></span></a>

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ZonariegoSeeder::class);
         $this->call(BombasSeeder::class);
         $this->call(ValvulasSeeder::class);
+        $this->call(ProgramasSeeder::class);
 
         Model::reguard();
     }

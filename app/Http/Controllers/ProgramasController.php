@@ -50,7 +50,6 @@ class ProgramasController extends Controller
 //paso todos los tiempos a segundos y los guardo
 
         $programa->riego_s = $request->riego * 60;
-        $programa->espera = $request->horas_e . ':' . $request->minutos_e;
         $programa->espera_s = (($request->horas_e * 60)*60)  +  ($request->minutos_e * 60);
         $programa->save();
 
