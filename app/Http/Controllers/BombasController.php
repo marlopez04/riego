@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Bomba;
+use App\Zonariego;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +19,12 @@ class BombasController extends Controller
      */
     public function index()
     {
-        //
+        $bombas = Bomba::orderBy('id', 'DSC')->paginate(5);
+        $bombas->load('zonariego');
+
+
+        return view('front.bombas.index')
+            ->with('bombas', $bombas);
     }
 
     /**
@@ -26,7 +34,10 @@ class BombasController extends Controller
      */
     public function create()
     {
-        //
+        $zonas = Zonariego::orderBy('descripcion', 'ASC')->lists('descripcion', 'id');
+
+        return view('front.bombas.create')
+            ->with('zonas', $zonas);
     }
 
     /**
@@ -37,7 +48,10 @@ class BombasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bomba = new Bomba($request->all());
+        $bomba->save();
+
+        return redirect()->route('bombas.index');
     }
 
     /**
@@ -59,7 +73,12 @@ class BombasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bomba = Bomba::find($id);
+        $zonas = Zonariego::orderBy('descripcion', 'ASC')->lists('descripcion', 'id');
+
+        return view('front.bombas.edit')        
+            ->with('bomba', $bomba)
+            ->with('zonas', $zonas);
     }
 
     /**
@@ -71,7 +90,12 @@ class BombasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bomba = bomba::find($id);
+
+        $bomba->fill($request->all());
+        $bomba->save();
+
+        return redirect()->route('bombas.index');
     }
 
     /**

@@ -16,7 +16,10 @@ class ValvulasController extends Controller
      */
     public function index()
     {
-        //
+        $valvulas = Programa::orderBy('id', 'DSC')->paginate(8);
+
+        return view('front.valvulas.index')
+            ->with('valvulas', $valvulas);
     }
 
     /**
@@ -26,7 +29,10 @@ class ValvulasController extends Controller
      */
     public function create()
     {
-        //
+        $valvulas = Programa::orderBy('nombre', 'ASC')->lists('nombre', 'id');
+
+        return view('front.valvulas.create')
+            ->with('valvulas', $valvulas);
     }
 
     /**
@@ -37,7 +43,10 @@ class ValvulasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valvula = new Programa($request->all());
+        $valvula->save();
+
+        return redirect()->route('valvulas.index');
     }
 
     /**
@@ -59,7 +68,13 @@ class ValvulasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $valvula = Programa::find($id);
+        $valvulas = Programa::orderBy('nombre', 'ASC')->lists('nombre', 'id');
+
+        return view('front.valvulas.edit')
+            ->with('valvula', $valvula)
+            ->with('valvulas', $valvulas);
+
     }
 
     /**
@@ -71,7 +86,12 @@ class ValvulasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $valvula = Programa::find($id);
+
+        $valvula->fill($request->all());
+        $valvula->save();
+
+        return redirect()->route('valvulas.index');
     }
 
     /**

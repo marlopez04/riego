@@ -97,7 +97,13 @@ class ProgramasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $programa = Programa::find($id);
+
+        $programa->fill($request->all());
+        $programa->save();
+
+        return redirect()->route('programas.index');
+
     }
 
     /**
