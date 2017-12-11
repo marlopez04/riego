@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Valvula;
+use App\Bomba;
+use App\Zonariego;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +20,8 @@ class ValvulasController extends Controller
      */
     public function index()
     {
-        $valvulas = Programa::orderBy('id', 'DSC')->paginate(8);
+        $valvulas = Valvula::orderBy('id', 'DSC')->paginate(8);
+        $valvulas->load('bomba', 'zonariego');
 
         return view('front.valvulas.index')
             ->with('valvulas', $valvulas);
@@ -29,10 +34,13 @@ class ValvulasController extends Controller
      */
     public function create()
     {
-        $valvulas = Programa::orderBy('nombre', 'ASC')->lists('nombre', 'id');
+        $bombas = Bomba::orderBy('nombre', 'ASC')->lists('nombre', 'id');
+        $zonas = Zonariego::orderBy('descripcion', 'ASC')->lists('descripcion', 'id');
+
 
         return view('front.valvulas.create')
-            ->with('valvulas', $valvulas);
+            ->with('zonas', $zonas)
+            ->with('bombas', $bombas);
     }
 
     /**
@@ -43,7 +51,7 @@ class ValvulasController extends Controller
      */
     public function store(Request $request)
     {
-        $valvula = new Programa($request->all());
+        $valvula = new Valvula($request->all());
         $valvula->save();
 
         return redirect()->route('valvulas.index');
@@ -68,13 +76,14 @@ class ValvulasController extends Controller
      */
     public function edit($id)
     {
-        $valvula = Programa::find($id);
-        $valvulas = Programa::orderBy('nombre', 'ASC')->lists('nombre', 'id');
+        $valvula = Valvula::find($id);
+        $bombas = Bomba::orderBy('nombre', 'ASC')->lists('nombre', 'id');
+        $zonas = Zonariego::orderBy('descripcion', 'ASC')->lists('descripcion', 'id');
 
         return view('front.valvulas.edit')
             ->with('valvula', $valvula)
-            ->with('valvulas', $valvulas);
-
+            ->with('bombas', $bombas)
+            ->with('zonas', $zonas);
     }
 
     /**

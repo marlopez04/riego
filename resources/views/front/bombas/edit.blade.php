@@ -5,7 +5,7 @@
 <div class="monthly-grid">
 	<div class="panel panel-widget">
 		<div class="panel-title">
-			RIEGO 	  
+			Bombas 	  
 		</div>
 			<div class="panel-body">
 				<!-- status -->

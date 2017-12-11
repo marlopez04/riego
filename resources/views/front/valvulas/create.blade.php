@@ -13,42 +13,38 @@
 					<div class="col-md-3"></div>
 
 					<div class="col-md-6">
-	{!! Form::open(['route' => 'programas.store', 'method' => 'POST', 'files' => true]) !!}
+	{!! Form::open(['route' => 'valvulas.store', 'method' => 'POST', 'files' => true]) !!}
 		<div class="form-group">
 			<h4>Nombre</h4>
-			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Nombre del articulo', 'required'])!!}
+			{!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Nombre de la valvula', 'required'])!!}
 		</div>
 		<div class="form-group">
-		<h4>Tiempo de Riego</h4>
-		<h5>Minutos</h5>
-       		
-			{!! Form::select('riego', ['00' => 00, '1' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5, '06' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10, '11' => 11, '12' => 12, '13' => 13, '14' => 14, '15' => 15, '16' => 16, '17' => 17, '18' => 18, '19' => 19, '20' => 20, '21' => 21, '22' => 22, '23' => 23, '24' => 24, '25' => 25, '26' => 26, '27' => 27, '28' => 28, '29' => 29, '30' => 30, '31' => 31, '32' => 32, '33' => 33, '34' => 34, '35' => 35, '36' => 36, '37' => 37, '38' => 38, '39' => 39, '40' => 40, '41' => 42, '43' => 43, '44' => 44, '45' => 45, '46' => 46, '47' => 47, '48' => 48, '49' => 49, '50' => 50, '51' => 51, '52' => 52, '53' => 53, '54' => 54, '55' => 55, '56' => 56, '57' => 57, '58' => 58, '59' => 59], null, ['class'=> 'tipo'])!!}
-
-		<div class="form-group">
-		<h4>Tiempo de Espera</h4>
-		<h5>Horas y Minutos</h5>
-       		
-       		{!! Form::select('horas_e', ['00' => 00, '1' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10, '11' => 11, '12' => 12, '13' => 13, '14' => 14, '15' => 15, '16' => 16, '17' => 17, '18' => 18, '19' => 19, '20' => 20, '21' => 21, '22' => 22, '23' => 23, '24' => 24], null, ['class'=> 'tipo'])!!}
-
-			{!! Form::select('minutos_e', ['00' => 00, '1' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9, '10' => 10, '11' => 11, '12' => 12, '13' => 13, '14' => 14, '15' => 15, '16' => 16, '17' => 17, '18' => 18, '19' => 19, '20' => 20, '21' => 21, '22' => 22, '23' => 23, '24' => 24, '25' => 25, '26' => 26, '27' => 27, '28' => 28, '29' => 29, '30' => 30, '31' => 31, '32' => 32, '33' => 33, '34' => 34, '35' => 35, '36' => 36, '37' => 37, '38' => 38, '39' => 39, '40' => 40, '41' => 42, '43' => 43, '44' => 44, '45' => 45, '46' => 46, '47' => 47, '48' => 48, '49' => 49, '50' => 50, '51' => 51, '52' => 52, '53' => 53, '54' => 54, '55' => 55, '56' => 56, '57' => 57, '58' => 58, '59' => 59], null, ['class'=> 'tipo'])!!}
+			<h4>Direccion</h4>
+			{!! Form::text('direccion', null, ['class' => 'form-control', 'placeholder' => 'Direccion de arduino', 'required'])!!}
 		</div>
 
 		<div class="form-group">
-		<h4>Ciclos de Riego</h4>
-			{!!	Form::number('ciclos',null,['class'=>'form-control', 'required'])!!}
+		<h4>Stat</h4>
+		<h5>Offline / Online</h5>
+			{!! Form::select('stat', ['offline' => 'offline', 'online' => 'online'], null, ['class'=> 'tipo'])!!}
 		</div>
-
+		
 		<div class="form-group">
 			<h4>Descripcion</h4>
 			{!! Form::textarea('descripcion', null, ['class' => 'form-control', 'placeholder' => 'Nombre del articulo', 'required'])!!}
 		</div>
 
 		<div class="form-group">
-			{!! Form::select('programasiguiente', $programas, null, ['class' => 'form-control select-category']) !!}
+			{!! Form::select('bomba_id', $bombas, null, ['class' => 'form-control select-category']) !!}
 		</div>
 
 		<div class="form-group">
-			{!! Form::submit('Guardar Programa',['class' => 'btn btn-success btn-lg btn-block', 'style'=>'color:#ffffff']) !!}
+			{!! Form::select('zonariego_id', $zonas, null, ['class' => 'form-control select-category']) !!}
+		</div>
+
+
+		<div class="form-group">
+			{!! Form::submit('Guardar Valvula',['class' => 'btn btn-success btn-lg btn-block', 'style'=>'color:#ffffff']) !!}
 		</div>
 		
 

@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Bomba;
+use App\Programa;
+use App\Valvula;
+use App\Zonariego;
+use App\Riegohistorial;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,7 +22,10 @@ class RiegoHistorialController extends Controller
      */
     public function index()
     {
-        //
+        $riegohistorials = RiegoHistorial::orderBy('id', 'DSC')->paginate(5);
+
+        return view('front.riegohistorial.index')
+            ->with('riegohistorials', $riegohistorials);
     }
 
     /**
@@ -26,7 +35,10 @@ class RiegoHistorialController extends Controller
      */
     public function create()
     {
-        //
+        $zonas = Zonariego::all();
+
+        return view('front.riegohistorial.create')
+            ->with('zonas', $zonas);
     }
 
     /**
@@ -59,7 +71,7 @@ class RiegoHistorialController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -69,9 +81,26 @@ class RiegoHistorialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function nuevo($id)
+    {
+        $riegohistorial = new Riegohistorial();
+        $riegohistorial->zonariego_id = $id;
+        $riegohistorial->save();
+
+        return redirect()->route('riegohistorial.edit',$id)
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
     public function update(Request $request, $id)
     {
-        //
+        $
     }
 
     /**

@@ -85,6 +85,10 @@ Route::get('/6', function () {
 		'as'   => 'riegohistorial.destroy'
 	]);
 
+	Route::get('riegohistorial/{id}/nuevo',[
+		'uses' => 'RiegoHistorialController@nuevo',
+		'as'   => 'riegohistorial.nuevo'
+	]);
 
 	Route::resource('valvulas', 'ValvulasController');
 	Route::get('valvulas/{id}/destroy',[

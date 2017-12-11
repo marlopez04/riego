@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class RiegoHistorial extends Model
 {
     protected $table = "riegohistorial";
-    protected $fillable = ['estado','programa_id','valvula_id','bomba_id','zonariego_id'];
+    protected $fillable = ['estado','ciclos', 'programa_id','valvula_id','bomba_id','zonariego_id'];
 
     public function valvula()
     {

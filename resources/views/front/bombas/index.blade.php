@@ -13,6 +13,7 @@
 					<div class="col-md-3"></div>
 
 					<div class="col-md-6">
+					<a href="{{ route('bombas.create') }}" class="btn btn-info">Registrar nueva Bomba</a>
 	<table class="table table-striped">
 		<thead>
 			<th>ID</th>
