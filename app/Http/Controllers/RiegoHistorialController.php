@@ -35,10 +35,14 @@ class RiegoHistorialController extends Controller
      */
     public function create()
     {
-        $zonas = Zonariego::all();
+        $riegohistorial = new Riegohistorial();
+        $riegohistorial->programa_id = 1;
+        $riegohistorial->zonariego_id = 1;
+        $riegohistorial->bomba_id = 1;
+        $riegohistorial->valvula_id = 1;
+        $riegohistorial->save();
 
-        return view('front.riegohistorial.create')
-            ->with('zonas', $zonas);
+        return redirect()->route('riegohistorial.edit',$riegohistorial->id);
     }
 
     /**
@@ -60,7 +64,31 @@ class RiegoHistorialController extends Controller
      */
     public function show($id)
     {
-        //
+        $riegohistorial = Riegohistorial::find($id);
+        $menu = $_GET['menu'];
+        $idagregar = $_GET['id'];
+
+        switch ($menu) {
+            case 1:
+                //cuando elige zona
+                $riegohistorial->zonariego_id = $idagregar;
+                break;
+            case 2:
+                //cuando elige valvula
+                $riegohistorial->valvula_id = $idagregar;
+                break;
+            case 3:
+                //cuando elige el programa
+                $riegohistorial->programa_id = $idagregar;
+                break;
+            case 4:
+                //cuando confirma
+                $riegohistorial-> = $idagregar;
+                break;
+        }
+
+        //retorna el html correspondiente a lo que selecciono
+
     }
 
     /**
@@ -71,7 +99,16 @@ class RiegoHistorialController extends Controller
      */
     public function edit($id)
     {
-        
+        $riegohistorial = Riegohistorial::find($id);
+        $zonas = Zonariego::all();
+        $valvulas = Valvula::all();
+        $programas = Programa::all();
+
+        return view('front.riegohistorial.edit')
+            ->with('riegohistorial', $riegohistorial)
+            ->with('zonas', $zonas)
+            ->with('valvulas', $valvulas)
+            ->with('programas', $programas);
     }
 
     /**
@@ -88,7 +125,7 @@ class RiegoHistorialController extends Controller
         $riegohistorial->zonariego_id = $id;
         $riegohistorial->save();
 
-        return redirect()->route('riegohistorial.edit',$id)
+        return redirect()->route('riegohistorial.edit',$id);
     }
 
     /**
@@ -100,7 +137,7 @@ class RiegoHistorialController extends Controller
 
     public function update(Request $request, $id)
     {
-        $
+        //
     }
 
     /**

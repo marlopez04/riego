@@ -94,8 +94,7 @@ $(document).ready(function(){
 	          var token = form.serialize();
 	          data = {
 	            token: token,
-	            menu: menu,
-	            idup: id
+	            menu: menu
 	          };
 	          console.log(data);
 	          $.get(url, data, function(pedido){
