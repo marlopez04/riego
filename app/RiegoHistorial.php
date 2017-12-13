@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class RiegoHistorial extends Model
 {
     protected $table = "riegohistorial";
-    protected $fillable = ['estado','ciclos', 'programa_id','valvula_id','bomba_id','zonariego_id'];
+    protected $fillable = ['estado', 'stat', 'ciclos', 'programa_id','valvula_id','bomba_id','zonariego_id'];
 
     public function valvula()
     {
@@ -21,12 +21,12 @@ class RiegoHistorial extends Model
 
     public function bomba()
     {
-    	return $this->belongsTo('App\Bomba');
+    	return $this->belongsTo('App\Bomba', 'bomba_id', 'id');
     }
 
     public function zonariego()
     {
-    	return $this->belongsTo('App\Zonariego');
+    	return $this->belongsTo('App\Zonariego', 'zonariego_id', 'id');
     }
 
 }

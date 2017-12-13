@@ -8,7 +8,7 @@ use App\Bomba;
 use App\Programa;
 use App\Valvula;
 use App\Zonariego;
-use App\Riegohistorial;
+use App\RiegoHistorial;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -22,10 +22,12 @@ class RiegoHistorialController extends Controller
      */
     public function index()
     {
-        $riegohistorials = RiegoHistorial::orderBy('id', 'DSC')->paginate(5);
 
+        $riegos = RiegoHistorial::orderBy('id', 'DSC')->paginate(5);
+        $riegos->load('valvula', 'zonariego', 'programa', 'bomba');
+dd($riegos);
         return view('front.riegohistorial.index')
-            ->with('riegohistorials', $riegohistorials);
+            ->with('riegos', $riegos);
     }
 
     /**
@@ -35,7 +37,7 @@ class RiegoHistorialController extends Controller
      */
     public function create()
     {
-        $riegohistorial = new Riegohistorial();
+        $riegohistorial = new RiegoHistorial();
         $riegohistorial->programa_id = 1;
         $riegohistorial->zonariego_id = 1;
         $riegohistorial->bomba_id = 1;
@@ -64,7 +66,7 @@ class RiegoHistorialController extends Controller
      */
     public function show($id)
     {
-        $riegohistorial = Riegohistorial::find($id);
+        $riegohistorial = RiegoHistorial::find($id);
         $menu = $_GET['menu'];
         $idagregar = $_GET['id'];
 
@@ -122,8 +124,8 @@ class RiegoHistorialController extends Controller
      */
     public function edit($id)
     {
-        $riegohistorial = Riegohistorial::find($id);
-
+        $riegohistorial = RiegoHistorial::find($id);
+/*
         $zonas = Zonariego::where('stat', '=', 'online')
                            ->where('descripcion', '<>', 'null')->get();
 
@@ -132,8 +134,18 @@ class RiegoHistorialController extends Controller
 
         $programas = Programa::where('stat', '=', 'online')
                            ->where('nombre', '<>', 'null')->get();
+*/
 
-        return view('front.riegohistorial.edit')
+        $zonas = Zonariego::where('stat', '=', 'online')
+                           ->where('descripcion', '<>', 'null')->lists('descripcion', 'id');
+
+        $valvulas = Valvula::where('stat', '=', 'online')
+                           ->where('nombre', '<>', 'null')->lists('nombre', 'id');
+
+        $programas = Programa::where('stat', '=', 'online')
+                           ->where('nombre', '<>', 'null')->lists('nombre', 'id');
+
+        return view('front.riegohistorial.edit2')
             ->with('riegohistorial', $riegohistorial)
             ->with('zonas', $zonas)
             ->with('valvulas', $valvulas)
@@ -150,7 +162,7 @@ class RiegoHistorialController extends Controller
 
     public function nuevo($id)
     {
-        $riegohistorial = new Riegohistorial();
+        $riegohistorial = new RiegoHistorial();
         $riegohistorial->zonariego_id = $id;
         $riegohistorial->save();
 
@@ -166,7 +178,15 @@ class RiegoHistorialController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $riegohistorial = RiegoHistorial::find($id);
+        $riegohistorial->save();
+        $riegohistorial->load('valvula');
+        $riegohistorial->bomba_id = $riegohistorial->valvula->bomba_id;
+        $riegohistorial->stat = 'online';
+        $riegohistorial->save();
+
+        return redirect()->route('riegohistorial.index');
+
     }
 
     /**
