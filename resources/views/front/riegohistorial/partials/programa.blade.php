@@ -14,7 +14,17 @@
 					<br>
 					<br>
 				@foreach($programas as $programa)
-					<a class="btn btn-success btn-lg btn-block" href="{{ route('riegohistorial.store', $zona) }}" style="color:#ffffff" >
-						<span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span> {{$programa->nombre }}
-					</a>
+                    @if ($programa->id == $riegohistorial->programa_id)
+
+                        <a class="btn btn-success btn-lg btn-block active" href="{{ route('riegohistorial.store', $zona) }}" style="color:#ffffff" >
+                            <span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span> {{$programa->nombre }}
+                        </a>
+
+                    @else
+
+    					<a class="btn btn-success btn-lg btn-block" href="{{ route('riegohistorial.store', $zona) }}" style="color:#ffffff" >
+    						<span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span> {{$programa->nombre }}
+    					</a>
+
+                    @endif
 				@endforeach

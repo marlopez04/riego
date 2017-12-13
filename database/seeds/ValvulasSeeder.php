@@ -14,7 +14,7 @@ class ValvulasSeeder extends Seeder
         DB::table('valvulas')->insert([
 			'direccion'     => 'valvula nula',
 			'descripcion'     => 'valvula nula',
-			'nombre'    => 'valvula nula',
+			'nombre'    => 'null',
 			'estado'     => 'apagada',
 			'stat'     => 'offline',
 			'bomba_id'     => '1',

@@ -12,9 +12,9 @@ class BombasSeeder extends Seeder
     public function run()
     {
         DB::table('bombas')->insert([
-			'direccion'     => 'nula',
+			'direccion'     => 'null',
 			'descripcion'     => 'bomba nula',
-			'nombre'    => 'bomba nula',
+			'nombre'    => 'null',
 			'estado'     => 'apagada',
 			'stat'     => 'offline',
 			'zonariego_id'     => '1'

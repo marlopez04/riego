@@ -71,23 +71,46 @@ class RiegoHistorialController extends Controller
         switch ($menu) {
             case 1:
                 //cuando elige zona
-                $riegohistorial->zonariego_id = $idagregar;
+                $zonas = Zonariego::all();
+
+                $html = view('riegohistorial.partials.zona')
+                   ->with('zonas', $zonas)
+                   ->with('riegohistorial', $riegohistorial);
+
                 break;
             case 2:
                 //cuando elige valvula
-                $riegohistorial->valvula_id = $idagregar;
+                // $valvulas = Valvula::all();
+
+                $valvulas = Valvula::where('zonariego_id',$riegohistorial->zonariego_id)
+                              ->where('stat', '=', 'online')
+                              ->where('nombre', '<>', 'null')->get();
+
+                $html = view('riegohistorial.partials.valvula')
+                   ->with('valvulas', $valvulas)
+                   ->with('riegohistorial', $riegohistorial);
+
                 break;
             case 3:
                 //cuando elige el programa
-                $riegohistorial->programa_id = $idagregar;
+                $programas = Programa::where('stat', '=', 'online')
+                                     ->where('nombre', '<>', 'null')->get();
+
+                $html = view('riegohistorial.partials.valvula')
+                   ->with('programas', $programas)
+                   ->with('riegohistorial', $riegohistorial);
+
                 break;
             case 4:
                 //cuando confirma
-                $riegohistorial-> = $idagregar;
+                $riegohistorial->load('valvula', 'programa', 'bomba', 'zonariego');
+                $html = view('riegohistorial.partials.confirmar')
+                   ->with('riegohistorial', $riegohistorial);
+
                 break;
         }
 
-        //retorna el html correspondiente a lo que selecciono
+        return $html;
 
     }
 
@@ -100,9 +123,15 @@ class RiegoHistorialController extends Controller
     public function edit($id)
     {
         $riegohistorial = Riegohistorial::find($id);
-        $zonas = Zonariego::all();
-        $valvulas = Valvula::all();
-        $programas = Programa::all();
+
+        $zonas = Zonariego::where('stat', '=', 'online')
+                           ->where('descripcion', '<>', 'null')->get();
+
+        $valvulas = Valvula::where('stat', '=', 'online')
+                           ->where('nombre', '<>', 'null')->get();
+
+        $programas = Programa::where('stat', '=', 'online')
+                           ->where('nombre', '<>', 'null')->get();
 
         return view('front.riegohistorial.edit')
             ->with('riegohistorial', $riegohistorial)

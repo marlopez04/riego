@@ -13,6 +13,7 @@
 					<div class="col-md-3"></div>
 
 					<div class="col-md-6">
+						<div class="riego-id" data-id="{{$riegohistorial->id}}"></div>
 
 						<div class="zona1" data-id="1">
 							<div class="btn-group">
@@ -83,6 +84,8 @@ $(document).ready(function(){
         var form = $('#form-historialriego');
 		var menu = $(this).data('u');
 		var id  = $(this).data('id');
+		var id_riego = $('.riego-id').data('id');
+
 		var datamenu;
 
 
@@ -97,9 +100,9 @@ $(document).ready(function(){
 	            menu: menu
 	          };
 	          console.log(data);
-	          $.get(url, data, function(pedido){
-			        $('.zona1').show();
-			        $('.zona2').hide();
+	          $.get(url, data, function(menu){
+					$('.zona2').fadeOut().html(menu).fadeIn();
+			        $('.zona1').hide();
 			        $('.valvula').hide();
 			        $('.programa').hide();
 			        $('.confirmar').hide();
@@ -108,11 +111,22 @@ $(document).ready(function(){
 		        break;
 			case 2:  //valvula
 				console.log("valvula");
-		        $('.zona1').hide();
-		        $('.zona2').hide();
-		        $('.valvula').show();
-		        $('.programa').hide();
-		        $('.confirmar').hide();
+
+	          var url = form.attr('action').replace(':RIEGO_ID', id_riego);
+	          var token = form.serialize();
+	          data = {
+	            token: token,
+	            menu: menu
+	          };
+	          console.log(data);
+	          $.get(url, data, function(menu){
+			        $('.zona1').hide();
+			        $('.zona2').hide();
+					$('.valvula').fadeOut().html(menu).fadeIn();
+			        $('.programa').hide();
+			        $('.confirmar').hide();
+	            });
+
 		        break;
 			case 3:  //programa
 				console.log("programa");

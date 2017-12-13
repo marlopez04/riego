@@ -13,7 +13,7 @@ class ProgramasSeeder extends Seeder
     {
         DB::table('programas')->insert([
 			'descripcion'     => 'programa nulo',
-			'nombre'    => '',
+			'nombre'    => 'null',
 			'stat'     => 'offline'
 			]);
     }

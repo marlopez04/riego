@@ -12,7 +12,7 @@ class ZonariegoSeeder extends Seeder
     public function run()
     {
         DB::table('zonariego')->insert([
-			'descripcion'     => 'nula',
+			'descripcion'     => 'null',
 			'stat'     => 'offline'
 			]);
         DB::table('zonariego')->insert([
