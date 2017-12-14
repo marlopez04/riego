@@ -92,6 +92,8 @@ dd($riegos);
                    ->with('valvulas', $valvulas)
                    ->with('riegohistorial', $riegohistorial);
 
+                return $html;
+
                 break;
             case 3:
                 //cuando elige el programa
@@ -112,7 +114,7 @@ dd($riegos);
                 break;
         }
 
-        return $html;
+        
 
     }
 
@@ -125,7 +127,8 @@ dd($riegos);
     public function edit($id)
     {
         $riegohistorial = RiegoHistorial::find($id);
-/*
+
+//con ajax y jquery inicio
         $zonas = Zonariego::where('stat', '=', 'online')
                            ->where('descripcion', '<>', 'null')->get();
 
@@ -134,7 +137,8 @@ dd($riegos);
 
         $programas = Programa::where('stat', '=', 'online')
                            ->where('nombre', '<>', 'null')->get();
-*/
+/*
+//con ajax y jquery fin
 
         $zonas = Zonariego::where('stat', '=', 'online')
                            ->where('descripcion', '<>', 'null')->lists('descripcion', 'id');
@@ -144,8 +148,9 @@ dd($riegos);
 
         $programas = Programa::where('stat', '=', 'online')
                            ->where('nombre', '<>', 'null')->lists('nombre', 'id');
+*/
 
-        return view('front.riegohistorial.edit2')
+        return view('front.riegohistorial.edit')
             ->with('riegohistorial', $riegohistorial)
             ->with('zonas', $zonas)
             ->with('valvulas', $valvulas)

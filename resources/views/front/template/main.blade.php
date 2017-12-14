@@ -52,7 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<!-- //mid-services -->
 	<!-- js -->
-	<script type="text/javascript" src="{{asset('plugins/rrhhtemplate/js/jquery-2.1.4.min.js')}}"></script>
+	<script type="text/javascript" src="{{asset('plugins/rrhhtemplate/js/jquery-2.2.4.js')}}"></script>
 	<script type="text/javascript" src="{{asset('plugins/rrhhtemplate/js/bootstrap.js')}}"></script>
 	@yield('js')
 

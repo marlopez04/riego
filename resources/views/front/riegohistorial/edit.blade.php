@@ -65,7 +65,7 @@
 
 <!-- insumos inicio -->
 
-{!! Form::open(['route' => ['riegohistorial.show', ':RIEGO_ID'], 'method' => 'POST' , 'id' => 'form-riegohistorial' ]) !!}
+{!! Form::open(['route' => ['riegohistorial.show', $riegohistorial->id ], 'method' => 'POST' , 'id' => 'form-riegohistorial' ]) !!}
 {!! Form::close() !!}
 
 @endsection
@@ -79,9 +79,12 @@
 
 $(document).ready(function(){
 //creacion de pedido nuevo
-	$('.btn-block').click(function(muestramenu){
+	$('.btn-block').click(function(e){
+
+		e.preventDefault();
 
         var form = $('#form-historialriego');
+        console.log(form);
 		var menu = $(this).data('u');
 		var id  = $(this).data('id');
 		var id_riego = $('.riego-id').data('id');
@@ -112,13 +115,21 @@ $(document).ready(function(){
 			case 2:  //valvula
 				console.log("valvula");
 
-	          var url = form.attr('action').replace(':RIEGO_ID', id_riego);
-	          var token = form.serialize();
+//	          var url = form.attr('action').replace(':RIEGO_ID', id_riego);
+//	          var url = form.attr('action');
+//	          var token = form.serialize();
+              
+
+              //mañeriada
+              form = $("form")[0];
+              token = form[input='_token']['value'];
+              url = form.action;
+
 	          data = {
 	            token: token,
 	            menu: menu
 	          };
-	          console.log(data);
+	          console.log(url);
 	          $.get(url, data, function(menu){
 			        $('.zona1').hide();
 			        $('.zona2').hide();

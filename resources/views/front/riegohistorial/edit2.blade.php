@@ -57,76 +57,19 @@
 
 
 $(document).ready(function(){
-//creacion de pedido nuevo
-	$('.btn-block').click(function(muestramenu){
-
-/*
-        var form = $('#form-historialriego');
-		var menu = $(this).data('u');
-		var id  = $(this).data('id');
-		var id_riego = $('.riego-id').data('id');
-
-		var datamenu;
 
 
-		switch(menu) {
-		    case 1:   //zona
-		    	console.log("zona");
+        $(document).ready(function () {
 
-	          var url = form.attr('action').replace(':RIEGO_ID', id_riego);
-	          var token = form.serialize();
-	          data = {
-	            token: token,
-	            menu: menu
-	          };
-	          console.log(data);
-	          $.get(url, data, function(menu){
-					$('.zona2').fadeOut().html(menu).fadeIn();
-			        $('.zona1').hide();
-			        $('.valvula').hide();
-			        $('.programa').hide();
-			        $('.confirmar').hide();
-	            });
+            $("#cantidad").focusout(function(){ 
+  			    var a = $("#cantidad").val();
+    			var b = a * 0.3;
+   				 $("#stockcritico").val(b);
+			});
+           
+        });
 
-		        break;
-			case 2:  //valvula
-				console.log("valvula");
 
-	          var url = form.attr('action').replace(':RIEGO_ID', id_riego);
-	          var token = form.serialize();
-	          data = {
-	            token: token,
-	            menu: menu
-	          };
-	          console.log(data);
-	          $.get(url, data, function(menu){
-			        $('.zona1').hide();
-			        $('.zona2').hide();
-					$('.valvula').fadeOut().html(menu).fadeIn();
-			        $('.programa').hide();
-			        $('.confirmar').hide();
-	            });
-
-		        break;
-			case 3:  //programa
-				console.log("programa");
-		        $('.zona1').hide();
-		        $('.zona2').hide();
-		        $('.valvula').hide();
-		        $('.programa').show();
-		        $('.confirmar').hide();
-		        break;
-			case 4:  //confirmar
-				console.log("confirmar");
-		        $('.zona1').hide();
-		        $('.zona2').hide();
-		        $('.valvula').hide();
-		        $('.programa').hide();
-		        $('.confirmar').show();
-		        break;
-		};
-*/
-    }); // fin funcion 
 
 }); //fin dom ready
 
