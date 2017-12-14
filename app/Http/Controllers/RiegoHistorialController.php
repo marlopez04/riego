@@ -99,7 +99,7 @@ dd($riegos);
                 $programas = Programa::where('stat', '=', 'online')
                                      ->where('nombre', '<>', 'null')->get();
 
-                $html = view('riegohistorial.partials.valvula')
+                $html = view('riegohistorial.partials.programa')
                    ->with('programas', $programas)
                    ->with('riegohistorial', $riegohistorial);
 

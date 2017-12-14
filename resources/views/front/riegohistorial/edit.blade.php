@@ -30,29 +30,20 @@
 								</a>
 							@endforeach
 
+
+
 						</div>
 
 						<div class="zona2" hidden data-id="2">
-							<!-- div pesando para tener la zona que ya esta guardada en el riegohistorial-->
-							zona2
 						</div>
+						
 						<div class="valvula" hidden data-id="3">
-							valvula
-								<a class="btn btn-success btn-lg btn-block" href="#" style="color:#ffffff" data-id="2" data-u="3">
-									<span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span> valvula 1
-								</a>
 						</div>
+
 						<div class="programa" hidden data-id="4">
-							programa
-								<a class="btn btn-success btn-lg btn-block" href="#" style="color:#ffffff" data-id="2" data-u="4">
-									<span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span> programa 1
-								</a>
 						</div>
+
 						<div class="confirmar" hidden data-id="5">
-							confirmar
-								<a class="btn btn-success btn-lg btn-block" href="#" style="color:#ffffff" data-id="2" data-u="1">
-									<span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span> confirmar
-								</a>
 						</div>
 
 					</div>
@@ -63,10 +54,10 @@
 		</div>
 	</div>
 
-<!-- insumos inicio -->
 
 {!! Form::open(['route' => ['riegohistorial.show', $riegohistorial->id ], 'method' => 'POST' , 'id' => 'form-riegohistorial' ]) !!}
 {!! Form::close() !!}
+
 
 @endsection
 
@@ -79,15 +70,19 @@
 
 $(document).ready(function(){
 //creacion de pedido nuevo
-	$('.btn-block').click(function(e){
+	$('.btn-success').click(function(e){
 
 		e.preventDefault();
 
+		console.log("------------");
+
         var form = $('#form-historialriego');
-        console.log(form);
+        //console.log(form);
 		var menu = $(this).data('u');
 		var id  = $(this).data('id');
 		var id_riego = $('.riego-id').data('id');
+
+		console.log(menu);
 
 		var datamenu;
 
@@ -96,31 +91,6 @@ $(document).ready(function(){
 		    case 1:   //zona
 		    	console.log("zona");
 
-	          var url = form.attr('action').replace(':RIEGO_ID', id_riego);
-	          var token = form.serialize();
-	          data = {
-	            token: token,
-	            menu: menu
-	          };
-	          console.log(data);
-	          $.get(url, data, function(menu){
-					$('.zona2').fadeOut().html(menu).fadeIn();
-			        $('.zona1').hide();
-			        $('.valvula').hide();
-			        $('.programa').hide();
-			        $('.confirmar').hide();
-	            });
-
-		        break;
-			case 2:  //valvula
-				console.log("valvula");
-
-//	          var url = form.attr('action').replace(':RIEGO_ID', id_riego);
-//	          var url = form.attr('action');
-//	          var token = form.serialize();
-              
-
-              //mañeriada
               form = $("form")[0];
               token = form[input='_token']['value'];
               url = form.action;
@@ -130,32 +100,82 @@ $(document).ready(function(){
 	            menu: menu
 	          };
 	          console.log(url);
-	          $.get(url, data, function(menu){
+	          console.log(menu);
+	          $.get(url, data, function(menuh){
 			        $('.zona1').hide();
-			        $('.zona2').hide();
-					$('.valvula').fadeOut().html(menu).fadeIn();
+			        $('.valvula').hide();
 			        $('.programa').hide();
 			        $('.confirmar').hide();
+					$('.zona2').fadeOut().html(menuh).fadeIn();
+	            });
+
+		        break;
+			case 2:  //valvula
+				console.log("valvula");
+              form = $("form")[0];
+              token = form[input='_token']['value'];
+              url = form.action;
+
+	          data = {
+	            token: token,
+	            menu: menu
+	          };
+	          console.log(url);
+	          console.log(menu);
+	          $.get(url, data, function(menuh){
+			        $('.zona1').hide();
+			        $('.zona2').hide();
+			        $('.programa').hide();
+			        $('.confirmar').hide();
+					$('.valvula').fadeOut().html(menuh).fadeIn();
 	            });
 
 		        break;
 			case 3:  //programa
 				console.log("programa");
-		        $('.zona1').hide();
-		        $('.zona2').hide();
-		        $('.valvula').hide();
-		        $('.programa').show();
-		        $('.confirmar').hide();
+              form = $("form")[0];
+              token = form[input='_token']['value'];
+              url = form.action;
+
+	          data = {
+	            token: token,
+	            menu: menu
+	          };
+	          console.log(url);
+	          console.log(menu);
+	          $.get(url, data, function(menuh){
+			        $('.valvula').hide();
+	  				$('.zona1').hide();
+			        $('.zona2').hide();
+			        $('.confirmar').hide();
+					$('.programa').fadeOut().html(menuh).fadeIn();
+
+	            });
+
 		        break;
 			case 4:  //confirmar
 				console.log("confirmar");
-		        $('.zona1').hide();
-		        $('.zona2').hide();
-		        $('.valvula').hide();
-		        $('.programa').hide();
-		        $('.confirmar').show();
+              form = $("form")[0];
+              token = form[input='_token']['value'];
+              url = form.action;
+
+	          data = {
+	            token: token,
+	            menu: menu
+	          };
+	          console.log(url);
+	          console.log(menu);
+	          $.get(url, data, function(menuh){
+			        $('.zona1').hide();
+			        $('.zona2').hide();
+			        $('.valvula').hide();
+			        $('.programa').hide();
+			        $('.confirmar').show();
+					$('.confirmar').fadeOut().html(menuh).fadeIn();
+
+	            });
 		        break;
-		};
+		}; //fin switch
 
     }); // fin funcion 
 

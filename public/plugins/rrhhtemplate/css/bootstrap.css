@@ -3123,7 +3123,8 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-  background-color: #337ab7;
+/*! color active de botones verde oscuro */
+  background-color: #8FBC8F;
   border-color: #2e6da4;
 }
 .btn-primary .badge {
@@ -3142,7 +3143,7 @@ fieldset[disabled] .btn-primary.active {
 .btn-success.active,
 .open > .dropdown-toggle.btn-success {
   color: #fff;
-  background-color: #449d44;
+  background-color: #8FBC8F;
   border-color: #398439;
 }
 .btn-success:active,
@@ -4786,7 +4787,7 @@ a.label:focus {
 }
 .label-success[href]:hover,
 .label-success[href]:focus {
-  background-color: #449d44;
+  background-color: #8FBC8F;
 }
 .label-info {
   background-color: #5bc0de;
