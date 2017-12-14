@@ -68,7 +68,7 @@ dd($riegos);
     {
         $riegohistorial = RiegoHistorial::find($id);
         $menu = $_GET['menu'];
-        $idagregar = $_GET['id'];
+       // $idagregar = $_GET['id'];
 
         switch ($menu) {
             case 1:
@@ -84,11 +84,10 @@ dd($riegos);
                 //cuando elige valvula
                 // $valvulas = Valvula::all();
 
-                $valvulas = Valvula::where('zonariego_id',$riegohistorial->zonariego_id)
-                              ->where('stat', '=', 'online')
+                $valvulas = Valvula::where('stat', '=', 'online')
                               ->where('nombre', '<>', 'null')->get();
 
-                $html = view('riegohistorial.partials.valvula')
+                $html = view('front.riegohistorial.partials.valvula')
                    ->with('valvulas', $valvulas)
                    ->with('riegohistorial', $riegohistorial);
 
