@@ -1,9 +1,10 @@
+<div class= "valvula1">
 						<div class="btn-group">
-                            <a class="btn btn-success" href="#" style="color:#ffffff" data-u="1">
+                            <a class="btn btn-success" href="#" style="color:#ffffff" data-u="1" data-id="0">
                             	<span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span>
                             	SECTOR
                             </a>
-                            <a class="btn btn-success active" href="#" style="color:#ffffff" data-u="2">
+                            <a class="btn btn-success active" href="#" style="color:#ffffff" data-u="2" data-id="0">
                             	<span class="glyphicon glyphicon-filter" style="color:#7FFF00" aria-hidden="true"></span>
                             	VALVULA
                             </a>
@@ -27,6 +28,10 @@
                     @endif
 
                 @endforeach
+
+</div>
+
+<div class="programa1"></div>
 
 <script>
 
@@ -55,7 +60,8 @@ $(document).ready(function(){
 
               data = {
                 token: token,
-                menu: menu
+                menu: menu,
+                id:id
               };
               console.log(url);
               $.get(url, data, function(menu){
@@ -75,7 +81,8 @@ $(document).ready(function(){
 
               data = {
                 token: token,
-                menu: menu
+                menu: menu,
+                id:id
               };
               console.log(url);
               $.get(url, data, function(menu){
@@ -93,19 +100,20 @@ $(document).ready(function(){
               token = form[input='_token']['value'];
               url = form.action;
 
-              data = {
-                token: token,
-                menu: menu
-              };
-              console.log(url);
-              $.get(url, data, function(menu){
-                    $('.programa').fadeOut().html(menu).fadeIn();
-                    $('.zona1').hide();
-                    $('.zona2').hide();
-                    $('.valvula').hide();
-                    $('.confirmar').hide();
-
-                });
+            data = {
+              token: token,
+              menu: menu,
+              id:id
+            };
+            console.log(url);
+            console.log(menu);
+            $.get(url, data, function(menuh){
+              $('.zona1').hide();
+              $('.zona2').hide();
+              $('.valvula1').hide();
+              $('.confirmar').hide();
+          $('.programa1').fadeOut().html(menuh).fadeIn();
+              });
 
                 break;
             case 4:  //confirmar
@@ -116,7 +124,8 @@ $(document).ready(function(){
 
               data = {
                 token: token,
-                menu: menu
+                menu: menu,
+                id:id
               };
               console.log(url);
               $.get(url, data, function(menu){

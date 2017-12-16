@@ -22,12 +22,27 @@ class RiegoHistorialController extends Controller
      */
     public function index()
     {
-
+/*
         $riegos = RiegoHistorial::orderBy('id', 'DSC')->paginate(5);
         $riegos->load('valvula', 'zonariego', 'programa', 'bomba');
 dd($riegos);
         return view('front.riegohistorial.index')
             ->with('riegos', $riegos);
+*/
+        $id = 1;
+
+        $riegohistorial = RiegoHistorial::find($id);
+
+        $programas = Programa::where('stat', '=', 'online')
+                             ->where('nombre', '<>', 'null')->get();
+
+//                dd($programas);
+
+        return view('front.riegohistorial.partials.programa')
+                ->with('programas', $programas)
+                ->with('riegohistorial', $riegohistorial);
+
+
     }
 
     /**
@@ -68,23 +83,31 @@ dd($riegos);
     {
         $riegohistorial = RiegoHistorial::find($id);
         $menu = $_GET['menu'];
-       // $idagregar = $_GET['id'];
+        $idagregar = $_GET['id'];
 
         switch ($menu) {
             case 1:
                 //cuando elige zona
-                $zonas = Zonariego::all();
+                $zonas = Zonariego::where('stat', '=', 'online')
+                           ->where('descripcion', '<>', 'null')->get();
 
-                $html = view('riegohistorial.partials.zona')
+                $html = view('front.riegohistorial.partials.zona')
                    ->with('zonas', $zonas)
                    ->with('riegohistorial', $riegohistorial);
 
                 break;
             case 2:
                 //cuando elige valvula
-                // $valvulas = Valvula::all();
+            
+            //compruebo si trae id, implica que
+            //trae el id de la zona
+
+            if ($idagregar <> 0) {
+                $riegohistorial->riegozona_id == $idagregar;
+            }
 
                 $valvulas = Valvula::where('stat', '=', 'online')
+                              ->where('zonariego_id', '=', $idagregar )->get();
                               ->where('nombre', '<>', 'null')->get();
 
                 $html = view('front.riegohistorial.partials.valvula')
@@ -96,19 +119,33 @@ dd($riegos);
                 break;
             case 3:
                 //cuando elige el programa
+
+            //compruebo si trae id, implica que
+            //trae el id de la valvula
+
+            if ($idagregar <> 0) {
+                $riegohistorial->valvula_id == $idagregar;
+            }
+
                 $programas = Programa::where('stat', '=', 'online')
                                      ->where('nombre', '<>', 'null')->get();
 
-                $html = view('riegohistorial.partials.programa')
+                //dd($programas);
+
+                $html = view('front.riegohistorial.partials.programa')
                    ->with('programas', $programas)
                    ->with('riegohistorial', $riegohistorial);
+
+                return $html;
 
                 break;
             case 4:
                 //cuando confirma
                 $riegohistorial->load('valvula', 'programa', 'bomba', 'zonariego');
-                $html = view('riegohistorial.partials.confirmar')
+                $html = view('front.riegohistorial.partials.confirmar')
                    ->with('riegohistorial', $riegohistorial);
+
+                return $html;
 
                 break;
         }

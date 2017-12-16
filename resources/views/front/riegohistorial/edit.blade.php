@@ -34,16 +34,16 @@
 
 						</div>
 
-						<div class="zona2" hidden data-id="2">
+						<div class="zona2" data-id="2">
 						</div>
 						
-						<div class="valvula" hidden data-id="3">
+						<div class="valvula" data-id="3">
 						</div>
 
-						<div class="programa" hidden data-id="4">
+						<div class="programa" data-id="4">
 						</div>
 
-						<div class="confirmar" hidden data-id="5">
+						<div class="confirmar" data-id="5">
 						</div>
 
 					</div>
@@ -97,7 +97,8 @@ $(document).ready(function(){
 
 	          data = {
 	            token: token,
-	            menu: menu
+	            menu: menu,
+	            id:id
 	          };
 	          console.log(url);
 	          console.log(menu);
@@ -118,7 +119,8 @@ $(document).ready(function(){
 
 	          data = {
 	            token: token,
-	            menu: menu
+	            menu: menu,
+	            id:id
 	          };
 	          console.log(url);
 	          console.log(menu);
@@ -139,7 +141,8 @@ $(document).ready(function(){
 
 	          data = {
 	            token: token,
-	            menu: menu
+	            menu: menu,
+	            id:id
 	          };
 	          console.log(url);
 	          console.log(menu);
@@ -161,7 +164,8 @@ $(document).ready(function(){
 
 	          data = {
 	            token: token,
-	            menu: menu
+	            menu: menu,
+	            id:id
 	          };
 	          console.log(url);
 	          console.log(menu);
