@@ -9,12 +9,12 @@
 				@foreach($zonas as $zona)
 					@if ($zona->id == $riegohistorial->zonariego_id)
 
-						<a class="btn btn-success btn-lg btn-block active" href="#" style="color:#ffffff" data-id="{{$zona->id}}" data-u="3">
+						<a class="btn btn-success btn-lg btn-block active" href="#" style="color:#ffffff" data-id="{{$zona->id}}" data-u="2">
 							<span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span> {{$zona->descripcion }}
 						</a>
 
 					@else
-						<a class="btn btn-success btn-lg btn-block" href="#" style="color:#ffffff" data-id="{{$zona->id}}" data-u="3">
+						<a class="btn btn-success btn-lg btn-block" href="#" style="color:#ffffff" data-id="{{$zona->id}}" data-u="2">
 							<span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span> {{$zona->descripcion }}
 						</a>
 					@endif
@@ -31,7 +31,7 @@ $(document).ready(function(){
         var form = $('#form-historialriego');
         console.log(form);
 		var menu = $(this).data('u');
-		var id  = $(this).data('id');
+		var iagregar  = $(this).data('id');
 		var id_riego = $('.riego-id').data('id');
 
 		var datamenu;
@@ -47,7 +47,8 @@ $(document).ready(function(){
 
 	          data = {
 	            token: token,
-	            menu: menu
+	            menu: menu,
+	            iagregar:iagregar
 	          };
 	          console.log(url);
 	          $.get(url, data, function(menu){
@@ -67,7 +68,8 @@ $(document).ready(function(){
 
 	          data = {
 	            token: token,
-	            menu: menu
+	            menu: menu,
+	            iagregar:iagregar
 	          };
 	          console.log(url);
 	          $.get(url, data, function(menu){
@@ -87,7 +89,8 @@ $(document).ready(function(){
 
 	          data = {
 	            token: token,
-	            menu: menu
+	            menu: menu,
+	            iagregar:iagregar
 	          };
 	          console.log(url);
 	          $.get(url, data, function(menu){
@@ -108,7 +111,8 @@ $(document).ready(function(){
 
 	          data = {
 	            token: token,
-	            menu: menu
+	            menu: menu,
+	            iagregar:iagregar
 	          };
 	          console.log(url);
 	          $.get(url, data, function(menu){

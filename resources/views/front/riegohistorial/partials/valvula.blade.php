@@ -45,7 +45,7 @@ $(document).ready(function(){
         var form = $('#form-historialriego');
         console.log(form);
         var menu = $(this).data('u');
-        var id  = $(this).data('id');
+        var iagregar  = $(this).data('id');
         var id_riego = $('.riego-id').data('id');
 
         var datamenu;
@@ -61,7 +61,7 @@ $(document).ready(function(){
               data = {
                 token: token,
                 menu: menu,
-                id:id
+                iagregar:iagregar
               };
               console.log(url);
               $.get(url, data, function(menu){
@@ -82,7 +82,7 @@ $(document).ready(function(){
               data = {
                 token: token,
                 menu: menu,
-                id:id
+                iagregar:iagregar
               };
               console.log(url);
               $.get(url, data, function(menu){
@@ -103,7 +103,7 @@ $(document).ready(function(){
             data = {
               token: token,
               menu: menu,
-              id:id
+              iagregar:iagregar
             };
             console.log(url);
             console.log(menu);
@@ -125,7 +125,7 @@ $(document).ready(function(){
               data = {
                 token: token,
                 menu: menu,
-                id:id
+                iagregar:iagregar
               };
               console.log(url);
               $.get(url, data, function(menu){

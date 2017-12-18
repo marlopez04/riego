@@ -25,9 +25,17 @@
 							<br>
 							<br>
 							@foreach($zonas as $zona)
-								<a class="btn btn-success btn-lg btn-block" href="#" style="color:#ffffff" data-id="{{$zona->id}}" data-u="2">
-									<span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span> {{$zona->descripcion }}
-								</a>
+								@if ($zona->id == $riegohistorial->zonariego_id)
+
+									<a class="btn btn-success btn-lg btn-block active" href="#" style="color:#ffffff" data-id="{{$zona->id}}" data-u="2">
+										<span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span> {{$zona->descripcion }}
+									</a>
+
+								@else
+									<a class="btn btn-success btn-lg btn-block" href="#" style="color:#ffffff" data-id="{{$zona->id}}" data-u="2">
+										<span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span> {{$zona->descripcion }}
+									</a>
+								@endif
 							@endforeach
 
 
@@ -79,13 +87,11 @@ $(document).ready(function(){
         var form = $('#form-historialriego');
         //console.log(form);
 		var menu = $(this).data('u');
-		var id  = $(this).data('id');
-		var id_riego = $('.riego-id').data('id');
+		var iagregar  = $(this).data('id');
 
 		console.log(menu);
 
 		var datamenu;
-
 
 		switch(menu) {
 		    case 1:   //zona
@@ -98,7 +104,7 @@ $(document).ready(function(){
 	          data = {
 	            token: token,
 	            menu: menu,
-	            id:id
+	            iagregar:iagregar
 	          };
 	          console.log(url);
 	          console.log(menu);
@@ -120,7 +126,7 @@ $(document).ready(function(){
 	          data = {
 	            token: token,
 	            menu: menu,
-	            id:id
+	            iagregar:iagregar
 	          };
 	          console.log(url);
 	          console.log(menu);
@@ -142,7 +148,7 @@ $(document).ready(function(){
 	          data = {
 	            token: token,
 	            menu: menu,
-	            id:id
+	            iagregar:iagregar
 	          };
 	          console.log(url);
 	          console.log(menu);
@@ -165,7 +171,7 @@ $(document).ready(function(){
 	          data = {
 	            token: token,
 	            menu: menu,
-	            id:id
+	            iagregar:iagregar
 	          };
 	          console.log(url);
 	          console.log(menu);

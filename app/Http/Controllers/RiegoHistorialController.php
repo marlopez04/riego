@@ -42,7 +42,6 @@ dd($riegos);
                 ->with('programas', $programas)
                 ->with('riegohistorial', $riegohistorial);
 
-
     }
 
     /**
@@ -83,7 +82,7 @@ dd($riegos);
     {
         $riegohistorial = RiegoHistorial::find($id);
         $menu = $_GET['menu'];
-        $idagregar = $_GET['id'];
+        $idagregar = $_GET['iagregar'];
 
         switch ($menu) {
             case 1:
@@ -95,6 +94,8 @@ dd($riegos);
                    ->with('zonas', $zonas)
                    ->with('riegohistorial', $riegohistorial);
 
+                return $html;
+
                 break;
             case 2:
                 //cuando elige valvula
@@ -104,11 +105,21 @@ dd($riegos);
 
             if ($idagregar <> 0) {
                 $riegohistorial->riegozona_id == $idagregar;
-            }
+                $riegohistorial->save();
 
                 $valvulas = Valvula::where('stat', '=', 'online')
-                              ->where('zonariego_id', '=', $idagregar )->get();
+                              ->where('zonariego_id', '=', $riegohistorial->riegozona_id)
                               ->where('nombre', '<>', 'null')->get();
+
+            }else{
+
+                $valvulas = Valvula::where('stat', '=', 'online')
+                              ->where('zonariego_id', '=', $idagragar)
+                              ->where('nombre', '<>', 'null')->get();
+
+            }
+
+
 
                 $html = view('front.riegohistorial.partials.valvula')
                    ->with('valvulas', $valvulas)
@@ -141,6 +152,15 @@ dd($riegos);
                 break;
             case 4:
                 //cuando confirma
+
+                //compruebo si trae id, implica que
+                //trae el id de la valvula
+
+
+            if ($idagregar <> 0) {
+                $riegohistorial->valvula_id == $idagregar;
+            }
+
                 $riegohistorial->load('valvula', 'programa', 'bomba', 'zonariego');
                 $html = view('front.riegohistorial.partials.confirmar')
                    ->with('riegohistorial', $riegohistorial);
@@ -148,9 +168,7 @@ dd($riegos);
                 return $html;
 
                 break;
-        }
-
-        
+        }        
 
     }
 
