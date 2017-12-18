@@ -104,21 +104,20 @@ dd($riegos);
             //trae el id de la zona
 
             if ($idagregar <> 0) {
-                $riegohistorial->riegozona_id == $idagregar;
+                $riegohistorial->zonariego_id = $idagregar;
                 $riegohistorial->save();
 
                 $valvulas = Valvula::where('stat', '=', 'online')
-                              ->where('zonariego_id', '=', $riegohistorial->riegozona_id)
+//                              ->where('zonariego_id', '=', $riegohistorial->zonariego_id)
                               ->where('nombre', '<>', 'null')->get();
 
             }else{
 
                 $valvulas = Valvula::where('stat', '=', 'online')
-                              ->where('zonariego_id', '=', $idagragar)
+//                              ->where('zonariego_id', '=', $idagragar)
                               ->where('nombre', '<>', 'null')->get();
 
             }
-
 
 
                 $html = view('front.riegohistorial.partials.valvula')
@@ -135,7 +134,8 @@ dd($riegos);
             //trae el id de la valvula
 
             if ($idagregar <> 0) {
-                $riegohistorial->valvula_id == $idagregar;
+                $riegohistorial->valvula_id = $idagregar;
+				$riegohistorial->save();
             }
 
                 $programas = Programa::where('stat', '=', 'online')
@@ -150,6 +150,7 @@ dd($riegos);
                 return $html;
 
                 break;
+				
             case 4:
                 //cuando confirma
 
@@ -158,7 +159,8 @@ dd($riegos);
 
 
             if ($idagregar <> 0) {
-                $riegohistorial->valvula_id == $idagregar;
+                $riegohistorial->programa_id = $idagregar;
+				$riegohistorial->save();
             }
 
                 $riegohistorial->load('valvula', 'programa', 'bomba', 'zonariego');

@@ -90,6 +90,7 @@ $(document).ready(function(){
 		var iagregar  = $(this).data('id');
 
 		console.log(menu);
+		console.log(iagregar);
 
 		var datamenu;
 

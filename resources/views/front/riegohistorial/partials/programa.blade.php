@@ -46,7 +46,8 @@ $(document).ready(function(){
     var iagregar  = $(this).data('id');
     var id_riego = $('.riego-id').data('id');
 
-    console.log(menu);
+		console.log(menu);
+		console.log(iagregar);
 
     var datamenu;
 

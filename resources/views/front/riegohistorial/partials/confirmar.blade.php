@@ -22,9 +22,10 @@
 <br>
 					<h2>SECTOR: {{$riegohistorial->zonariego->descripcion}}</h2>
 					<h2>VALVULA: {{$riegohistorial->valvula->nombre}}</h2>
-					<h2>PROGRAMA: {{$riegohistorial->programa->nombre}}</h2>
+
+					<h2>PROGRAMA: </h2>
 					<br>
-					<h3>{{$riegohistorial->programa->descripcion}}</h3>
+					<h3>descripcion</h3>
 					<br>
 
 					<a class="btn btn-success btn-lg btn-block" href="#" style="color:#ffffff" data-u="3" data-id="ok">

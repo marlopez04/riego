@@ -46,9 +46,10 @@ $(document).ready(function(){
         console.log(form);
         var menu = $(this).data('u');
         var iagregar  = $(this).data('id');
-        var id_riego = $('.riego-id').data('id');
 
-        var datamenu;
+		console.log(menu);
+		console.log(iagregar);
+
 
         switch(menu) {
             case 1:   //zona
