@@ -16,5 +16,6 @@ class ProgramasSeeder extends Seeder
 			'nombre'    => 'null',
 			'stat'     => 'offline'
 			]);
+
     }
 }

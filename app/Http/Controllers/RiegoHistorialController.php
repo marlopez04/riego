@@ -22,13 +22,12 @@ class RiegoHistorialController extends Controller
      */
     public function index()
     {
-/*
         $riegos = RiegoHistorial::orderBy('id', 'DSC')->paginate(5);
-        $riegos->load('valvula', 'zonariego', 'programa', 'bomba');
-dd($riegos);
+        $riegos->load('valvula', 'programa', 'bomba', 'zonariego');
+  
         return view('front.riegohistorial.index')
             ->with('riegos', $riegos);
-*/
+/*
         $id = 1;
 
         $riegohistorial = RiegoHistorial::find($id);
@@ -36,11 +35,15 @@ dd($riegos);
         $programas = Programa::where('stat', '=', 'online')
                              ->where('nombre', '<>', 'null')->get();
 
+
+//        $riegohistorials->load('programa');
+//                dd($riegohistorials);
+
 //                dd($programas);
 
         return view('front.riegohistorial.partials.programa')
-                ->with('programas', $programas)
-                ->with('riegohistorial', $riegohistorial);
+                ->with('riegohistorial', $ri);
+*/
 
     }
 
@@ -56,6 +59,7 @@ dd($riegos);
         $riegohistorial->zonariego_id = 1;
         $riegohistorial->bomba_id = 1;
         $riegohistorial->valvula_id = 1;
+        $riegohistorial->stat = "offline";
         $riegohistorial->save();
 
         return redirect()->route('riegohistorial.edit',$riegohistorial->id);
@@ -134,7 +138,9 @@ dd($riegos);
             //trae el id de la valvula
 
             if ($idagregar <> 0) {
+                $valvula = Valvula::find($idagregar);
                 $riegohistorial->valvula_id = $idagregar;
+                $riegohistorial->bomba_id = $valvula->bomba_id;
 				$riegohistorial->save();
             }
 
@@ -152,7 +158,7 @@ dd($riegos);
                 break;
 				
             case 4:
-                //cuando confirma
+                //cuando va a confirma
 
                 //compruebo si trae id, implica que
                 //trae el id de la valvula
@@ -163,12 +169,29 @@ dd($riegos);
 				$riegohistorial->save();
             }
 
-                $riegohistorial->load('valvula', 'programa', 'bomba', 'zonariego');
+                $riegohistorial->load('valvula','zonariego','bomba');
+                //$riegohistorial->load('programa');
+
+                $programa = Programa::find($riegohistorial->programa_id);
+
+                //dd($riegohistorial->programa);
+
+
                 $html = view('front.riegohistorial.partials.confirmar')
-                   ->with('riegohistorial', $riegohistorial);
+                   ->with('riegohistorial', $riegohistorial)
+                   ->with('programa', $programa);
 
                 return $html;
 
+                break;
+
+            case 5:
+                //cuando confirma
+
+                $riegohistorial->stat = "online";
+                $riegohistorial->save();
+
+                return redirect()->route('riegohistorial.index');                
                 break;
         }        
 
@@ -223,11 +246,11 @@ dd($riegos);
 
     public function nuevo($id)
     {
-        $riegohistorial = new RiegoHistorial();
-        $riegohistorial->zonariego_id = $id;
+        $riegohistorial = RiegoHistorial::find($id);
+        $riegohistorial->stat = "online";
         $riegohistorial->save();
 
-        return redirect()->route('riegohistorial.edit',$id);
+        return redirect()->route('riegohistorial.index');
     }
 
     /**

@@ -7,7 +7,7 @@
                                 <span class="glyphicon glyphicon-filter" style="color:#7FFF00" aria-hidden="true"></span>
                                 VALVULA
                             </a>
-                            <a class="btn btn-success active" href="#" style="color:#ffffff" data-u="3" data-id="0">
+                            <a class="btn btn-success" href="#" style="color:#ffffff" data-u="3" data-id="0">
                                 <span class="glyphicon glyphicon-dashboard" style="color:#7FFF00" aria-hidden="true"></span> PROGRAMA
                             </a>
 
@@ -23,15 +23,12 @@
 					<h2>SECTOR: {{$riegohistorial->zonariego->descripcion}}</h2>
 					<h2>VALVULA: {{$riegohistorial->valvula->nombre}}</h2>
 
-					<h2>PROGRAMA: </h2>
+					<h2>PROGRAMA: {{$programa->nombre}}</h2>
 					<br>
-					<h3>descripcion</h3>
+					<h3>{{$programa->descripcion}}</h3>
 					<br>
 
-					<a class="btn btn-success btn-lg btn-block" href="#" style="color:#ffffff" data-u="3" data-id="ok">
-							<span class="glyphicon glyphicon-ok" style="color:#7FFF00" aria-hidden="true"></span>
-							CONFIRMAR
-					</a>
+            <a href="{{ route('riegohistorial.nuevo', $riegohistorial->id) }}" class="btn btn-warning btn-lg btn-block" style="color:#ffffff"> CONFIRMAR</a>
 
 <script>
 
@@ -137,6 +134,7 @@ $(document).ready(function(){
 
                 });
                 break;
+
         }; //fin switch
 
     }); // fin funcion 
