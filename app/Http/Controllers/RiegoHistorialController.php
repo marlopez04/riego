@@ -111,18 +111,11 @@ class RiegoHistorialController extends Controller
                 $riegohistorial->zonariego_id = $idagregar;
                 $riegohistorial->save();
 
-                $valvulas = Valvula::where('stat', '=', 'online')
-//                              ->where('zonariego_id', '=', $riegohistorial->zonariego_id)
-                              ->where('nombre', '<>', 'null')->get();
-
-            }else{
-
-                $valvulas = Valvula::where('stat', '=', 'online')
-//                              ->where('zonariego_id', '=', $idagragar)
-                              ->where('nombre', '<>', 'null')->get();
-
             }
 
+                $valvulas = Valvula::where('stat', '=', 'online')
+                              ->where('zonariego_id', '=', $riegohistorial->zonariego_id)
+                              ->where('nombre', '<>', 'null')->get();
 
                 $html = view('front.riegohistorial.partials.valvula')
                    ->with('valvulas', $valvulas)

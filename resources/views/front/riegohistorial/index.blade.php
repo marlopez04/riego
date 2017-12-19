@@ -20,7 +20,8 @@
 			<th>zona</th>
 			<th>valvula</th>
 			<th>programa</th>
-			<th>Modificar / Borrar</th>
+			<th>ciclos</th>
+			<th>Modificar/Borrar</th>
 		</thead>
 		<tbody>
 			@foreach($riegos as $riegohistorial)
@@ -29,6 +30,7 @@
 					<td>{{ $riegohistorial->zonariego->descripcion }}</td>
 					<td>{{ $riegohistorial->valvula->nombre }}</td>
 					<td>R = {{ $riegohistorial->programa->riego }} min, <br>E = {{ $riegohistorial->programa->horas_e }}:{{ $riegohistorial->programa->minutos_e }}, <br>Ciclos = {{ $riegohistorial->programa->ciclos }} </td>
+					<td>{{ $riegohistorial->ciclos }}</td>
 					<td>
 						<a href="{{ route('riegohistorial.edit', $riegohistorial->id) }}" class="btn btn-warning" style="color:#ffffff"> <span class="glyphicon glyphicon-wrench"></span></a>
 						

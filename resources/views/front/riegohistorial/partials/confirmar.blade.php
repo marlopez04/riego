@@ -1,3 +1,4 @@
+<div class="confirmar1">
                         <div class="btn-group">
                             <a class="btn btn-success" href="#" style="color:#ffffff" data-u="1" data-id="0">
                                 <span class="glyphicon glyphicon-inbox" style="color:#7FFF00" aria-hidden="true"></span>
@@ -30,7 +31,20 @@
 
             <a href="{{ route('riegohistorial.nuevo', $riegohistorial->id) }}" class="btn btn-warning btn-lg btn-block" style="color:#ffffff"> CONFIRMAR</a>
 
+</div>
+            <div class="zona3" data-id="2">
+            </div>
+            
+            <div class="valvula3" data-id="3">
+            </div>
+
+            <div class="programa3" data-id="4">
+            </div>
+
+
+
 <script>
+
 
 $(document).ready(function(){
 //creacion de pedido nuevo
@@ -42,9 +56,9 @@ $(document).ready(function(){
         console.log(form);
         var menu = $(this).data('u');
         var iagregar  = $(this).data('id');
-        var id_riego = $('.riego-id').data('id');
 
-        var datamenu;
+    console.log(menu);
+    console.log(iagregar);
 
 
         switch(menu) {
@@ -62,11 +76,11 @@ $(document).ready(function(){
               };
               console.log(url);
               $.get(url, data, function(menu){
-                    $('.zona2').fadeOut().html(menu).fadeIn();
+                    $('.zona3').fadeOut().html(menu).fadeIn();
                     $('.zona1').hide();
                     $('.valvula').hide();
                     $('.programa').hide();
-                    $('.confirmar').hide();
+                    $('.confirmar1').hide();
                 });
 
                 break;
@@ -85,9 +99,9 @@ $(document).ready(function(){
               $.get(url, data, function(menu){
                     $('.zona1').hide();
                     $('.zona2').hide();
-                    $('.valvula').fadeOut().html(menu).fadeIn();
+                    $('.valvula3').fadeOut().html(menu).fadeIn();
                     $('.programa').hide();
-                    $('.confirmar').hide();
+                    $('.confirmar1').hide();
                 });
 
                 break;
@@ -97,20 +111,20 @@ $(document).ready(function(){
               token = form[input='_token']['value'];
               url = form.action;
 
-              data = {
-                token: token,
-                menu: menu,
-                iagregar:iagregar
-              };
-              console.log(url);
-              $.get(url, data, function(menu){
-                    $('.programa').fadeOut().html(menu).fadeIn();
-                    $('.zona1').hide();
-                    $('.zona2').hide();
-                    $('.valvula').hide();
-                    $('.confirmar').hide();
-
-                });
+            data = {
+              token: token,
+              menu: menu,
+              iagregar:iagregar
+            };
+            console.log(url);
+            console.log(menu);
+            $.get(url, data, function(menuh){
+              $('.zona1').hide();
+              $('.zona2').hide();
+              $('.valvula1').hide();
+              $('.confirmar1').hide();
+          $('.programa3').fadeOut().html(menuh).fadeIn();
+              });
 
                 break;
             case 4:  //confirmar
@@ -134,7 +148,6 @@ $(document).ready(function(){
 
                 });
                 break;
-
         }; //fin switch
 
     }); // fin funcion 
