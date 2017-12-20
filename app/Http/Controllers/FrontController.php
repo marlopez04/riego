@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Bomba;
+use App\Programa;
+use App\Valvula;
+use App\Zonariego;
+use App\RiegoHistorial;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -86,6 +92,24 @@ class FrontController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function disparador()
+    {
+
+        $riegos = RiegoHistorial::all();
+        $riegos->load('valvula', 'programa', 'bomba', 'zonariego');
+  
+        return view('front.index2')
+            ->with('riegos', $riegos);
+
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     public function update(Request $request, $id)
     {
         //

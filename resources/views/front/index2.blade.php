@@ -42,12 +42,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="panel-body">
 				<!-- status -->
 				<div class="contain">									
+	<table class="table table-striped">
+		<thead>
+			<th>ID</th>
+			<th>zona</th>
+			<th>valvula</th>
+			<th>programa</th>
+			<th>ciclos</th>
+			<th>bomba</th>
+		</thead>
+		<tbody>
+			@foreach($riegos as $riegohistorial)
+				<tr>
+					<td>{{ $riegohistorial->id }}</td>
+					<td>{{ $riegohistorial->zonariego->descripcion }}</td>
+					<td>{{ $riegohistorial->valvula->nombre }}</td>
+					<td>R = {{ $riegohistorial->programa->riego }} min, E = {{ $riegohistorial->programa->horas_e }}:{{ $riegohistorial->programa->minutos_e }}, Ciclos = {{ $riegohistorial->programa->ciclos }} </td>
+					<td>{{ $riegohistorial->ciclos }}</td>
+					<td>{{ $riegohistorial->bomba->id }}</td>
+				</tr>
+			@endforeach
+		</tbody>
+	</table>
+
+
+						<div class="col-md-11">
+
 						<h1 class="black">segundos transcurridos</h1>
 						<h2 class="black">tiempo total</h2>
 
-						<div class="col-md-11">
+<!--PAGINA FINAL INICIO-->
+<div class="soja" style="background:#61FF69">
+	hola
+</div>
+<div class="alfalfa"></div>
+<div class="girasol"></div>
+
+
+<!--PAGINA FINAL FIN-->
+
+
+
 						<div class="gantt">
-						Sector 3
+						prueba de jquery
 						</div>
 
 						<div class="progress">
@@ -152,6 +189,7 @@ $(document).ready(function() {
 					$("#prueba").removeClass('progress-bar progress-bar-info progress-bar-striped active');
 					$("#prueba").addClass('progress-bar progress-bar-warning progress-bar-striped active');
 				
+/*
 
 				ventana1 = window.open("http://192.168.100.103/?VENTILADOR=OFF", "nuevo", "width=400,height=400");
 
@@ -160,14 +198,14 @@ $(document).ready(function() {
  			    ventana1.close();
 				}
 
-
+*/
 
 					
 				}else{
 					//cambio el tipo de RIEGO
 					$("#prueba").removeClass('progress-bar progress-bar-warning progress-bar-striped active');
 					$("#prueba").addClass('progress-bar progress-bar-info progress-bar-striped active');
-
+/*
 
 				ventana1 = window.open("http://192.168.100.103/?VENTILADOR=ON", "nuevo", "width=400,height=400");
 				setTimeout(cerrarVentana,60);
@@ -176,6 +214,7 @@ $(document).ready(function() {
  			    ventana1.close();
 				}
 
+*/
 
 				};
 				

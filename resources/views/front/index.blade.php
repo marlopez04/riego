@@ -29,11 +29,6 @@
 							  <span class="glyphicon glyphicon-download" aria-hidden="true"></span> VALVULA 4 
 						</button>
 
-						
-
-						
-						
-
 						<div class="col-md-12">
 						<div class="gantt">
 						Valvula 1

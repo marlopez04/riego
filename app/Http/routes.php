@@ -63,6 +63,11 @@ Route::get('/6', function () {
 		'as'   => 'Front.destroy'
 	]);
 
+	Route::get('/disparador', [
+	'as' => 'front.disparador',
+	'uses' => 'FrontController@disparador'
+	]);
+
 
 
 	Route::resource('bombas', 'BombasController');
