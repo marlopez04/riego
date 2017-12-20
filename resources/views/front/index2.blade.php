@@ -27,6 +27,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="//fonts.googleapis.com/css?family=Work+Sans:200,300,400,500,600,700" rel="stylesheet">
 	<link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic'
 	    rel='stylesheet' type='text/css'>
+
+<style>
+.progress-bar-warning {
+  background-color: #ee82ee;
+}
+
+h1{
+	color:#000000;
+	text-align: center;
+}
+
+.gantt{
+	color:#000000;
+}
+</style>
 </head>
 
 <body>
@@ -70,19 +85,179 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 						<h1 class="black">segundos transcurridos</h1>
 						<h2 class="black">tiempo total</h2>
-
+						<br>
+						<br>
+						<br>
 <!--PAGINA FINAL INICIO-->
-<div class="soja" style="background:#61FF69">
-	hola
-</div>
-<div class="alfalfa"></div>
-<div class="girasol"></div>
+<div class="soja" style="background:#8fc270; border-radius: 10px; border-width:10px; border-color:green;">
 
+
+<!--border-style: solid;"-->
+
+<h1>SOJA</h1>
+
+			<div class="col-md-12">
+					<div class="gantt">
+						Valvula1
+						</div>
+
+						<div class="progress">
+						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+						    60% (EN ESPERA)
+						  </div>
+						</div>
+			</div>
+<br>
+<br>
+<br>
+
+			<div class="col-md-12">
+					<div class="gantt">
+						Valvula2
+						</div>
+
+						<div class="progress">
+						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+						    60% (EN ESPERA)
+						  </div>
+						</div>
+			</div>
+<br>
+<br>
+<br>
+
+			<div class="col-md-12">
+					<div class="gantt">
+						Valvula3
+						</div>
+
+						<div class="progress">
+						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+						    60% (EN ESPERA)
+						  </div>
+						</div>
+			</div>
+<br>
+<br>
+<br>
+
+
+				<div class="col-md-12">
+
+					<div class="gantt">
+						Valvula4
+						</div>
+
+						<div class="progress">
+						  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+						    60% (EN ESPERA)
+						  </div>
+						</div>
+				</div>
+<br>
+<br>
+<br>
+</div>
+
+<div class="clearfix">
+	<br>
+</div>
+
+<div class="alfalfa" style="background:#ffd64d; border-radius: 10px; border-width:10px; border-color:#FF8C00;">
+
+<!--border-style: solid;"-->
+
+<h1>ALFALFA</h1>
+
+			<div class="col-md-12">
+					<div class="gantt">
+						Valvula1
+						</div>
+
+						<div class="progress">
+						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+						    60% (EN ESPERA)
+						  </div>
+						</div>
+			</div>
+<br>
+<br>
+<br>
+				<div class="col-md-12">
+
+					<div class="gantt">
+						Valvula2
+						</div>
+
+						<div class="progress">
+						  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+						    60% (EN ESPERA)
+						  </div>
+						</div>
+				</div>
+<br>
+<br>
+<br>
+
+</div>
+
+<div class="clearfix">
+	<br>
+</div>
+
+<div class="girasol" style="background:#f4f186; border-radius: 10px; border-width:10px; border-color:#FFD700;">
+
+ <!--border-style: solid;"-->
+
+<h1>GIRASOL</h1>
+
+				<div class="col-md-12">
+				
+
+					<div class="gantt">
+						Valvula1
+						</div>
+
+						<div class="progress">
+						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+						    60% (EN ESPERA)
+						  </div>
+						</div>
+				</div>
+<br>
+<br>
+<br>
+
+				<div class="col-md-12">
+
+					<div class="gantt">
+						Valvula2
+						</div>
+
+						<div class="progress">
+						  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+						    60% (EN ESPERA)
+						  </div>
+						</div>
+				</div>
+<br>
+<br>
+<br>
+</div>
+
+<div>
 
 <!--PAGINA FINAL FIN-->
 
-
-
+<!--
 						<div class="gantt">
 						prueba de jquery
 						</div>
@@ -110,7 +285,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 
 						</div>
-
+-->
 				</div>
 			</div>
 			<!-- status -->
@@ -175,8 +350,8 @@ $(document).ready(function() {
     	porcentajeS = "width:" + porcentaje + "%";
     	display = porcentaje + "% (REGANDO)"
 
-            $('h1').text(contador);
-            $('h2').text(tiempoD);
+//            $('h1').text(contador);
+//            $('h2').text(tiempoD);
             $("#prueba").attr("aria-valuenow", porcentaje)
             $("#prueba").attr("style", porcentajeS);
             $("#prueba").html(display);
