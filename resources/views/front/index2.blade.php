@@ -63,6 +63,8 @@ h1{
 			<th>zona</th>
 			<th>valvula</th>
 			<th>programa</th>
+			<th>riego s</th>
+			<th>espera s</th>
 			<th>ciclos</th>
 			<th>bomba</th>
 		</thead>
@@ -73,6 +75,8 @@ h1{
 					<td>{{ $riegohistorial->zonariego->descripcion }}</td>
 					<td>{{ $riegohistorial->valvula->nombre }}</td>
 					<td>R = {{ $riegohistorial->programa->riego }} min, E = {{ $riegohistorial->programa->horas_e }}:{{ $riegohistorial->programa->minutos_e }}, Ciclos = {{ $riegohistorial->programa->ciclos }} </td>
+					<td>{{ $riegohistorial->programa->riego_s}}</td>
+					<td>{{ $riegohistorial->programa->espera_s }}</td>
 					<td>{{ $riegohistorial->ciclos }}</td>
 					<td>{{ $riegohistorial->bomba->id }}</td>
 				</tr>
@@ -304,7 +308,20 @@ h1{
 
 
 <script type="text/javascript">
- 
+
+//convierto el objeto riegos en json
+var riegoarray = <?php echo json_encode($riegos->toArray()) ?> 
+
+$.each(riegoarray, function(i, item) {
+    console.log(item[i]);
+});​
+
+/*
+$.each(data, function(i, item) {
+    alert(data[i].PageName);
+});​
+*/
+
 contador = 0;
 tiempototal = 15;
 
