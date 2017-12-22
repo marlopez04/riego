@@ -53,7 +53,7 @@
 						</div>
 
 						<div>
-							<iframe src="http://192.168.100.103" frameborder="0"></iframe>
+							<iframe src="http://192.168.1.103" frameborder="0"></iframe>
 						</div>
 
 						</div>
@@ -72,7 +72,7 @@
 <script type="text/javascript">
  
 contador = 0;
-tiempototal = 15;
+tiempototal = 5000;
 
 
 //convertir segundos a HH:MM:SS (para mostrar totalizado)   INICIO

@@ -242,8 +242,23 @@ class RiegoHistorialController extends Controller
         $riegohistorial = RiegoHistorial::find($id);
         $riegohistorial->stat = "online";
         $riegohistorial->save();
+/*
+        echo "<script> 
+                ventana1 = window.open('http://192.168.1.103/?VENTILADOR=ON', 'nuevo', 'width=400,height=400');
+                setTimeout(cerrarVentana,60);
+                function cerrarVentana(){
+                ventana1.close();
+                location.href='".route('riegohistorial.index')."';
+                }
+        </script>";
+        echo "<script>";
+        echo "jquery.get('http://192.168.1.103:84/', function(){location.href='".route('riegohistorial.index')."';});";
+        echo "</script>";
+*/
 
-        return redirect()->route('riegohistorial.index');
+        //return redirect()->route('riegohistorial.index');
+        echo route('riegohistorial.index');
+        die;
     }
 
     /**

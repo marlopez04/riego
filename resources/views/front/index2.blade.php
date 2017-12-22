@@ -93,171 +93,94 @@ h1{
 						<br>
 						<br>
 <!--PAGINA FINAL INICIO-->
-<div class="soja" style="background:#8fc270; border-radius: 10px; border-width:10px; border-color:green;">
 
-
-<!--border-style: solid;"-->
-
-<h1>SOJA</h1>
-
+@foreach($zonas as $zona)
+	@if($zona->id == 2)
+<div class="soja" style="background:#8fc270;">
+<h1>{{ $zona->descripcion}}</h1>
+	@foreach($zona->valvulas as $valvula)
 			<div class="col-md-12">
 					<div class="gantt">
-						Valvula1
+						{{ $valvula->id}} {{ $valvula->nombre}}
 						</div>
 
 						<div class="progress">
 						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
-						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-						    60% (EN ESPERA)
+						  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%" data-id="{{ $valvula->id}}">
+						    0% (EN ESPERA)
 						  </div>
 						</div>
 			</div>
 <br>
 <br>
 <br>
+	@endforeach
+	@endif
+@endforeach
 
-			<div class="col-md-12">
-					<div class="gantt">
-						Valvula2
-						</div>
-
-						<div class="progress">
-						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
-						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-						    60% (EN ESPERA)
-						  </div>
-						</div>
-			</div>
-<br>
-<br>
-<br>
-
-			<div class="col-md-12">
-					<div class="gantt">
-						Valvula3
-						</div>
-
-						<div class="progress">
-						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
-						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-						    60% (EN ESPERA)
-						  </div>
-						</div>
-			</div>
-<br>
-<br>
-<br>
-
-
-				<div class="col-md-12">
-
-					<div class="gantt">
-						Valvula4
-						</div>
-
-						<div class="progress">
-						  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
-						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-						    60% (EN ESPERA)
-						  </div>
-						</div>
-				</div>
-<br>
-<br>
-<br>
 </div>
 
 <div class="clearfix">
 	<br>
 </div>
 
+@foreach($zonas as $zona)
+	@if($zona->id == 3)
 <div class="alfalfa" style="background:#ffd64d; border-radius: 10px; border-width:10px; border-color:#FF8C00;">
-
-<!--border-style: solid;"-->
-
-<h1>ALFALFA</h1>
-
+<h1>{{ $zona->descripcion}}</h1>
+	@foreach($zona->valvulas as $valvula)
 			<div class="col-md-12">
 					<div class="gantt">
-						Valvula1
+						{{ $valvula->id}} {{ $valvula->nombre}}
 						</div>
 
 						<div class="progress">
 						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
-						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-						    60% (EN ESPERA)
+						  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%" data-id="{{ $valvula->id}}">
+						    0% (EN ESPERA)
 						  </div>
 						</div>
 			</div>
 <br>
 <br>
 <br>
-				<div class="col-md-12">
-
-					<div class="gantt">
-						Valvula2
-						</div>
-
-						<div class="progress">
-						  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
-						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-						    60% (EN ESPERA)
-						  </div>
-						</div>
-				</div>
-<br>
-<br>
-<br>
+	@endforeach
+	@endif
+@endforeach
 
 </div>
+
 
 <div class="clearfix">
 	<br>
 </div>
 
+
+@foreach($zonas as $zona)
+	@if($zona->id == 4)
 <div class="girasol" style="background:#f4f186; border-radius: 10px; border-width:10px; border-color:#FFD700;">
-
- <!--border-style: solid;"-->
-
-<h1>GIRASOL</h1>
-
-				<div class="col-md-12">
-				
-
+<h1>{{ $zona->descripcion}}</h1>
+	@foreach($zona->valvulas as $valvula)
+			<div class="col-md-12">
 					<div class="gantt">
-						Valvula1
+						{{ $valvula->id}} {{ $valvula->nombre}}
 						</div>
 
 						<div class="progress">
 						  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
-						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-						    60% (EN ESPERA)
+						  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%" data-id="{{ $valvula->id}}">
+						    0% (EN ESPERA)
 						  </div>
 						</div>
-				</div>
+			</div>
 <br>
 <br>
 <br>
+	@endforeach
+	@endif
+@endforeach
 
-				<div class="col-md-12">
-
-					<div class="gantt">
-						Valvula2
-						</div>
-
-						<div class="progress">
-						  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
-						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-						    60% (EN ESPERA)
-						  </div>
-						</div>
-				</div>
-<br>
-<br>
-<br>
 </div>
-
-<div>
 
 <!--PAGINA FINAL FIN-->
 

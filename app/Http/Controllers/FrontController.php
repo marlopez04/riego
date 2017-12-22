@@ -98,8 +98,21 @@ class FrontController extends Controller
 
         $riegos = RiegoHistorial::all();
         $riegos->load('valvula', 'programa', 'bomba', 'zonariego');
+
+        foreach ($riegos as $riego) {
+            diferenciatiempo = sysdate  - $riego->valvula->ultimoriego ;
+            if ($riego->estado == "regando") {
+                # code...
+            }
+            $riego->programa->espera_s
+            $riego->programa->riego_s
+        }
+        
+        $zonas = Zonariego::all();
+        $zonas->load('valvulas');
   
         return view('front.index2')
+            ->with('zonas', $zonas)
             ->with('riegos', $riegos);
 
     }

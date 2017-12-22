@@ -28,8 +28,12 @@
 					<br>
 					<h3>{{$programa->descripcion}}</h3>
 					<br>
-
+<!--
             <a href="{{ route('riegohistorial.nuevo', $riegohistorial->id) }}" class="btn btn-warning btn-lg btn-block" style="color:#ffffff"> CONFIRMAR</a>
+-->
+            <a href="javascript:void(0)" onclick="update()" class="btn btn-warning btn-lg btn-block" style="color:#ffffff"> CONFIRMAR</a>
+
+
 
 </div>
             <div class="zona3" data-id="2">
@@ -45,8 +49,17 @@
 
 <script>
 
+function update(){
+  $.get('<?=route('riegohistorial.nuevo', $riegohistorial->id)?>', function(res){
+    $.get('http://192.168.1.103:84/', function(){
+      location.href=res;
+    });
+  });
+}
+
 
 $(document).ready(function(){
+
 //creacion de pedido nuevo
     $('.btn-success').click(function(e){
 

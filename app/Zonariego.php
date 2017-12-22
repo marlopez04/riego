@@ -13,4 +13,9 @@ class Zonariego extends Model
     {
         return $this->hasMany('App\Bomba');
     }
+
+    public function valvulas()
+    {
+        return $this->hasMany('App\Valvula');
+    }
 }

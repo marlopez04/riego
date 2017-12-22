@@ -14,7 +14,8 @@ class AddRiegohistorialTable extends Migration
     {
         Schema::create('riegohistorial', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('estado',['habierta', 'cerrada'])->default('cerrada');
+            $table->enum('estado',['regando', 'esperando'])->default('regando');
+            $table->enum('estadov',['habierta', 'cerrada'])->default('cerrada');
             $table->enum('stat',['offline', 'online'])->default('offline');
             $table->integer('ciclos')->unsigned();
             $table->integer('programa_id')->unsigned();
