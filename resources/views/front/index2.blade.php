@@ -60,8 +60,14 @@ h1{
 	<table class="table table-striped">
 		<thead>
 			<th>ID</th>
+			<th>estado</th>
 			<th>zona</th>
 			<th>valvula</th>
+			<th>ultimoriego</th>
+			<th>dif.tiempo</th>
+			<th>Riego S</th>
+			<th>Espera S</th>
+			<th>Sumados</th>
 			<th>programa</th>
 			<th>riego s</th>
 			<th>espera s</th>
@@ -72,8 +78,14 @@ h1{
 			@foreach($riegos as $riegohistorial)
 				<tr>
 					<td>{{ $riegohistorial->id }}</td>
+					<td>{{ $riegohistorial->estado }}</td>
 					<td>{{ $riegohistorial->zonariego->descripcion }}</td>
 					<td>{{ $riegohistorial->valvula->nombre }}</td>
+					<td>{{ $riegohistorial->valvula->ultimoriego }}</td>
+					<td>{{ Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego))}}</td>
+					<td>{{ $riegohistorial->programa->riego_s }}</td>
+					<td>{{ $riegohistorial->programa->espera_s }}</td>
+					<td>{{ $riegohistorial->programa->riego_s + $riegohistorial->programa->espera_s}}</td>
 					<td>R = {{ $riegohistorial->programa->riego }} min, E = {{ $riegohistorial->programa->horas_e }}:{{ $riegohistorial->programa->minutos_e }}, Ciclos = {{ $riegohistorial->programa->ciclos }} </td>
 					<td>{{ $riegohistorial->programa->riego_s}}</td>
 					<td>{{ $riegohistorial->programa->espera_s }}</td>

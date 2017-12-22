@@ -9,6 +9,7 @@ use App\Programa;
 use App\Valvula;
 use App\Zonariego;
 use App\RiegoHistorial;
+use Carbon\Carbon;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -239,12 +240,25 @@ class RiegoHistorialController extends Controller
 
     public function nuevo($id)
     {
-        $riegohistorial = RiegoHistorial::find($id);
-        $riegohistorial->stat = "online";
-        $riegohistorial->save();
+        $sysdate = Carbon::now(); //recupero el sysdate
 
+        //confirmo el riego
+        $riego = RiegoHistorial::find($id);
+        $riego->stat = "online";
+        $riego->stat = "regando";
+        $riego->save();
+        $riego->load('valvula', 'bomba');
+
+        //recupero la valvula, y grabo el tiempo del ultimo riego
+        $valvula = Valvula::find($riego->valvula->id);
+        $valvula->ultimoriego = $sysdate;
+        $valvula->save();
+
+        //activo la valvula y la bomba en arduino
         echo "<script> 
-                ventana1 = window.open('http://192.168.1.103/?VENTILADOR=ON', 'nuevo', 'width=400,height=400');
+                ventana1 = window.open('".$valvula->direccion. "ON"."', 'nuevo', 'width=400,height=400');
+                setTimeout(cerrarVentana,60);
+                ventana2 = window.open('".$riego->bomba->direccion. "ON"."', 'nuevo', 'width=400,height=400');
                 setTimeout(cerrarVentana,60);
                 function cerrarVentana(){
                 ventana1.close();
