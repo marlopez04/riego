@@ -9,6 +9,7 @@ use App\Programa;
 use App\Valvula;
 use App\Zonariego;
 use App\RiegoHistorial;
+use Carbon\Carbon;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -96,16 +97,35 @@ class FrontController extends Controller
     public function disparador()
     {
 
-        $riegos = RiegoHistorial::all();
+        $sysdate = Carbon::now(); //recupero el sysdate
+
+        //recupero todos los riegos activos
+        $riegos = RiegoHistorial::where('stat', '=', 'online')->get();
         $riegos->load('valvula', 'programa', 'bomba', 'zonariego');
+                         
+        //calculo de diferencia en segundos
+//        $diferencia = Carbon::parse($sysdate)->diffInSeconds(Carbon::parse($riegos->created_at));
 
         foreach ($riegos as $riego) {
-            diferenciatiempo = sysdate  - $riego->valvula->ultimoriego ;
+            $diferenciatiempo = Carbon::parse($sysdate)->diffInSeconds(Carbon::parse($riego->valvula->ultimoriego));
             if ($riego->estado == "regando") {
-                # code...
+                //cuando esta regando
+                if( $riego->programa->riego_s < $diferenciatiempo ){
+                    $riego->estado = "esperando";
+                    $riego->save();
+                }
+
+            }else{
+                //cuando esta esperando para regar
+                if( $riego->programa->espera_s < ($diferenciatiempo + $riego->programa->riego_s) ){
+                    $riego->estado = "regando";
+                    $riego->save();
+                    //pasa a regar, actualizo el ultimo riego de la valvula
+                    $valvula = Valvula::find($riego->valvula->id);
+                    $valvula = 
+                }
             }
-            $riego->programa->espera_s
-            $riego->programa->riego_s
+
         }
         
         $zonas = Zonariego::all();

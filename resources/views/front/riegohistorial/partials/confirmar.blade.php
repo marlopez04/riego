@@ -28,11 +28,11 @@
 					<br>
 					<h3>{{$programa->descripcion}}</h3>
 					<br>
-<!--
             <a href="{{ route('riegohistorial.nuevo', $riegohistorial->id) }}" class="btn btn-warning btn-lg btn-block" style="color:#ffffff"> CONFIRMAR</a>
--->
+<!--
             <a href="javascript:void(0)" onclick="update()" class="btn btn-warning btn-lg btn-block" style="color:#ffffff"> CONFIRMAR</a>
 
+-->
 
 
 </div>
