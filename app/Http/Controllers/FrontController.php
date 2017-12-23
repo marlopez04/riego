@@ -119,7 +119,7 @@ class FrontController extends Controller
                 //cuando esta esperando para regar
                 if( $riego->programa->espera_s < ($diferenciatiempo + $riego->programa->riego_s) ){
                     $riego->estado = "regando";
-                    $riego->ciclo + 1;
+                    $riego->ciclos = $riego->ciclos + 1;
                     $riego->save();
                     //pasa a regar, actualizo el ultimo riego de la valvula
                     $valvula = Valvula::find($riego->valvula->id);
@@ -135,7 +135,7 @@ class FrontController extends Controller
   
         return view('front.index2')
             ->with('zonas', $zonas)
-            ->with('$sysdate', $sysdate)
+            ->with('sysdate', $sysdate)
             ->with('riegos', $riegos);
 
     }

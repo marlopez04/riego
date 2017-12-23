@@ -245,7 +245,8 @@ class RiegoHistorialController extends Controller
         //confirmo el riego
         $riego = RiegoHistorial::find($id);
         $riego->stat = "online";
-        $riego->stat = "regando";
+        $riego->estado = "regando";
+        $riego->ciclos = 1;
         $riego->save();
         $riego->load('valvula', 'bomba');
 

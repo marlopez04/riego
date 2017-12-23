@@ -82,7 +82,7 @@ h1{
 					<td>{{ $riegohistorial->zonariego->descripcion }}</td>
 					<td>{{ $riegohistorial->valvula->nombre }}</td>
 					<td>{{ $riegohistorial->valvula->ultimoriego }}</td>
-					<td>{{ Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego))}}</td>
+					<td>{{ Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) }}</td>
 					<td>{{ $riegohistorial->programa->riego_s }}</td>
 					<td>{{ $riegohistorial->programa->espera_s }}</td>
 					<td>{{ $riegohistorial->programa->riego_s + $riegohistorial->programa->espera_s}}</td>
