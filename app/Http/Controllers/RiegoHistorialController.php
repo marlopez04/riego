@@ -258,6 +258,8 @@ class RiegoHistorialController extends Controller
         $valvula->save();
 
         //activo la valvula y la bomba en arduino
+
+/*
         echo "<script> 
                 ventana1 = window.open('".$valvula->direccion. "ON"."', 'nuevo', 'width=400,height=400');
                 setTimeout(cerrarVentana,60);
@@ -268,16 +270,17 @@ class RiegoHistorialController extends Controller
                 location.href='".route('riegohistorial.index')."';
                 }
         </script>";
+*/
 
 /*
         echo "<script>";
         echo "jquery.get('http://192.168.1.103:84/', function(){location.href='".route('riegohistorial.index')."';});";
         echo "</script>";
 
-        //return redirect()->route('riegohistorial.index');
         echo route('riegohistorial.index');
         die;
 */
+        return redirect()->route('riegohistorial.index');
     }
 
     /**

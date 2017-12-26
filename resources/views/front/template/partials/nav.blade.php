@@ -8,15 +8,18 @@
 		<span class="icon-bar"></span>
 	</button>
 			<a class="navbar-brand" href="index.html">
-<!--
-				<h1><span class="fa fa-signal" aria-hidden="true"></span> a tu vieja <label>Hr iure Agency</label></h1>
--->
+
+
+				<h1><span class="fa fa-signal" aria-hidden="true"></span> AREVALO <label>SISTEMAS</label></h1>
 				<span>
+<!--
+
 				<img src="{{asset('img/logo.png')}}" style="width:60px;height:50px;"/>
 				<img src="{{asset('img/nombre.png')}}" style="width:100px;height:50px;"/>
 				</span>
 				
 			</a>
+-->
 		</div>
 		<!--/.navbar-header-->
 

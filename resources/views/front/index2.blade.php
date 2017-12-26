@@ -107,9 +107,6 @@ h1{
 
 
 						<div class="col-md-11">
-
-						<h1 class="black">segundos transcurridos</h1>
-						<h2 class="black">tiempo total</h2>
 						<br>
 						<br>
 						<br>
@@ -118,13 +115,16 @@ h1{
 @foreach($zonas as $zona)
 	@if($zona->id == 2)
 <div class="soja" style="background:#8fc270; border-radius: 10px;">
+
+<!--PAGINA FINAL INICIO
 <h1>{{ $zona->descripcion}}</h1>
+-->
 	@foreach($zona->valvulas as $valvula)
 			<div class="col-md-12">
+				@if($valvula->estado == "libre")
 					<div class="gantt">
 						{{ $valvula->id}} {{ $valvula->nombre}}
 						</div>
-						@if($valvula->estado == "libre")
 
 							<div class="progress">
 							  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
@@ -133,10 +133,17 @@ h1{
 							  </div>
 							</div>
 
-						@else
+				@else
+
+
 
 						@foreach($riegos as $riegohistorial)
 							@if($riegohistorial->valvula_id == $valvula->id)
+
+								<div class="gantt">
+								{{ $valvula->id}} {{ $valvula->nombre}} / R = {{ $riegohistorial->programa->riego }} min, E = {{ $riegohistorial->programa->horas_e }}:{{ $riegohistorial->programa->minutos_e }}, Ciclos = {{ $riegohistorial->ciclos }}/{{ $riegohistorial->programa->ciclos }}
+								</div>
+
 								@if ($riegohistorial->estado == "esperando")
 									<div class="progress">
 									  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
@@ -155,7 +162,7 @@ h1{
 							@endif
 
 						@endforeach
-						@endif
+				@endif
 			</div>
 <br>
 <br>
@@ -173,13 +180,16 @@ h1{
 @foreach($zonas as $zona)
 	@if($zona->id == 3)
 <div class="alfalfa" style="background:#ffd64d; border-radius: 10px; border-width:10px; border-color:#FF8C00;">
+
+<!--PAGINA FINAL INICIO
 <h1>{{ $zona->descripcion}}</h1>
+-->	
 	@foreach($zona->valvulas as $valvula)
 			<div class="col-md-12">
+				@if($valvula->estado == "libre")
 					<div class="gantt">
 						{{ $valvula->id}} {{ $valvula->nombre}}
 						</div>
-						@if($valvula->estado == "libre")
 
 							<div class="progress">
 							  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
@@ -188,10 +198,15 @@ h1{
 							  </div>
 							</div>
 
-						@else
+				@else
 
 						@foreach($riegos as $riegohistorial)
 							@if($riegohistorial->valvula_id == $valvula->id)
+
+								<div class="gantt">
+								{{ $valvula->id}} {{ $valvula->nombre}} /  R = {{ $riegohistorial->programa->riego }} min, E = {{ $riegohistorial->programa->horas_e }}:{{ $riegohistorial->programa->minutos_e }}, Ciclos = {{ $riegohistorial->ciclos }}/{{ $riegohistorial->programa->ciclos }}
+								</div>
+
 								@if ($riegohistorial->estado == "esperando")
 									<div class="progress">
 									  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
@@ -210,7 +225,7 @@ h1{
 							@endif
 
 						@endforeach
-						@endif
+				@endif
 			</div>
 <br>
 <br>
@@ -230,14 +245,17 @@ h1{
 @foreach($zonas as $zona)
 	@if($zona->id == 4)
 <div class="girasol" style="background:#f4f186; border-radius: 10px; border-width:10px; border-color:#FFD700;">
+
+<!--PAGINA FINAL INICIO
 <h1>{{ $zona->descripcion}}</h1>
+-->
 	@foreach($zona->valvulas as $valvula)
 			<div class="col-md-12">
+
+				@if($valvula->estado == "libre")
 					<div class="gantt">
 						{{ $valvula->id}} {{ $valvula->nombre}}
 						</div>
-
-						@if($valvula->estado == "libre")
 
 							<div class="progress">
 							  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
@@ -246,10 +264,13 @@ h1{
 							  </div>
 							</div>
 
-						@else
+				@else
 
 						@foreach($riegos as $riegohistorial)
 							@if($riegohistorial->valvula_id == $valvula->id)
+								<div class="gantt">
+								{{ $valvula->id}} {{ $valvula->nombre}} /  R = {{ $riegohistorial->programa->riego }} min, E = {{ $riegohistorial->programa->horas_e }}:{{ $riegohistorial->programa->minutos_e }}, Ciclos = {{ $riegohistorial->ciclos }}/{{ $riegohistorial->programa->ciclos }}
+								</div>
 								@if ($riegohistorial->estado == "esperando")
 									<div class="progress">
 									  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
@@ -268,7 +289,7 @@ h1{
 							@endif
 
 						@endforeach
-						@endif
+				@endif
 			</div>
 <br>
 <br>

@@ -18,7 +18,8 @@ class ProgramasController extends Controller
      */
     public function index()
     {
-        $programas = Programa::orderBy('id', 'DSC')->paginate(8);
+        $programas = Programa::where('nombre', '<>', 'null')
+                            ->orderBy('id', 'DSC')->paginate(8);
 
         return view('front.programas.index')
             ->with('programas', $programas);

@@ -108,30 +108,65 @@ class FrontController extends Controller
 
         foreach ($riegos as $riego) {
             $diferenciatiempo = Carbon::parse($sysdate)->diffInSeconds(Carbon::parse($riego->valvula->ultimoriego));
-            if ($riego->estado == "regando") {
-                //cuando esta regando
-                if( $riego->programa->riego_s < $diferenciatiempo ){
-                    $riego->estado = "esperando";
-                    $riego->save();
 
-                    $valvula = Valvula::find($riego->valvula->id);
-                    $valvula->estado = "cerrada";
-                    $valvula->save();
-                }
+                    //controlo si termino todos los ciclos
+                    if ($riego->ciclos == $riego->programa->ciclos) {
+                        //controlo si no tiene un programa siguiente para seguir regando
 
-            }else{
-                //cuando esta esperando para regar
-                if( $riego->programa->espera_s < ($diferenciatiempo + $riego->programa->riego_s) ){
-                    $riego->estado = "regando";
-                    $riego->ciclos = $riego->ciclos + 1;
-                    $riego->save();
-                    //pasa a regar, actualizo el ultimo riego de la valvula
-                    $valvula = Valvula::find($riego->valvula->id);
-                    $valvula->ultimoriego = $sysdate;
-                    $valvula->estado = "habierta";
-                    $valvula->save();
+                        if($riego->programa->programasiguiente <> 1){
+
+                            $riego->stat = "offline";
+                            $riego->save();
+                            $riegonuevo = new Riegohistorial($riego->all());
+                            $riegonuevo->programa_id = $riego->programa->programasiguiente;
+                            $riegonuevo->ciclos = 1;
+                            //pasa a regar, actualizo el ultimo riego de la valvula
+                            $valvula = Valvula::find($riego->valvula->id);
+                            $valvula->ultimoriego = $sysdate;
+                            $valvula->estado = "habierta";
+                            $valvula->save();
+
+                        }else{
+                            $riego->stat = "offline";
+                            $riego->save();
+                            //pasa a regar, actualizo el ultimo riego de la valvula
+                            $valvula = Valvula::find($riego->valvula->id);
+                            $valvula->estado = "libre";
+                            $valvula->save();
+                        }
+                    }
+
+                if ($riego->stat == 'online') {
+
+                    if ($riego->estado == "regando") {
+                        //cuando esta regando
+                        if( $riego->programa->riego_s < $diferenciatiempo ){
+                            $riego->estado = "esperando";
+                            $riego->save();
+
+                            $valvula = Valvula::find($riego->valvula->id);
+                            $valvula->estado = "cerrada";
+                            $valvula->save();
+                        }
+
+                    }else{
+                        //cuando esta esperando para regar
+                        if( $riego->programa->espera_s < ($diferenciatiempo - $riego->programa->riego_s) ){
+                            
+                                $riego->estado = "regando";
+                                $riego->ciclos = $riego->ciclos + 1;
+                                $riego->save();
+                                //pasa a regar, actualizo el ultimo riego de la valvula
+                                $valvula = Valvula::find($riego->valvula->id);
+                                $valvula->ultimoriego = $sysdate;
+                                $valvula->estado = "habierta";
+                                $valvula->save();
+                            }
+         
+                    }
+
                 }
-            }
+            
 
         }
         
