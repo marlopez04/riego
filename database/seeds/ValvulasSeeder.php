@@ -15,7 +15,7 @@ class ValvulasSeeder extends Seeder
 			'direccion'     => 'valvula nula',
 			'descripcion'     => 'valvula nula',
 			'nombre'    => 'null',
-			'estado'     => 'apagada',
+			'estado'     => 'libre',
 			'stat'     => 'offline',
 			'bomba_id'     => '1',
 			'zonariego_id'     => '1'
@@ -24,7 +24,7 @@ class ValvulasSeeder extends Seeder
 			'direccion'     => '192.168.1.20/valvula1s',
 			'descripcion'     => 'valvula 1s',
 			'nombre'    => 'valvula 1s',
-			'estado'     => 'apagada',
+			'estado'     => 'libre',
 			'bomba_id'     => '2',
 			'zonariego_id'     => '2'
 			]);
@@ -32,7 +32,7 @@ class ValvulasSeeder extends Seeder
 			'direccion'     => '192.168.1.20/bomba1a',
 			'descripcion'     => 'valvula 2s',
 			'nombre'    => 'valvula 2s',
-			'estado'     => 'apagada',
+			'estado'     => 'libre',
 			'bomba_id'     => '2',
 			'zonariego_id'     => '2'
 			]);
@@ -40,7 +40,7 @@ class ValvulasSeeder extends Seeder
 			'direccion'     => '192.168.1.20/bomba1a',
 			'descripcion'     => 'bomba 1a',
 			'nombre'    => 'valvula 1a',
-			'estado'     => 'apagada',
+			'estado'     => 'libre',
 			'bomba_id'     => '3',
 			'zonariego_id'     => '3'
 			]);
@@ -48,7 +48,7 @@ class ValvulasSeeder extends Seeder
 			'direccion'     => '192.168.1.20/bomba1g',
 			'descripcion'     => 'bomba 1g',
 			'nombre'    => 'valvula 1a',
-			'estado'     => 'apagada',
+			'estado'     => 'libre',
 			'bomba_id'     => '4',
 			'zonariego_id'     => '2'
 			]);
@@ -57,7 +57,7 @@ class ValvulasSeeder extends Seeder
 			'direccion'     => '192.168.1.20/bomba1g',
 			'descripcion'     => 'bomba 1g',
 			'nombre'    => 'valvula 1g',
-			'estado'     => 'apagada',
+			'estado'     => 'libre',
 			'bomba_id'     => '4',
 			'zonariego_id'     => '4'
 			]);

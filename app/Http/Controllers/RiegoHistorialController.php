@@ -116,6 +116,7 @@ class RiegoHistorialController extends Controller
 
                 $valvulas = Valvula::where('stat', '=', 'online')
                               ->where('zonariego_id', '=', $riegohistorial->zonariego_id)
+                              ->where('estado', '=', 'libre')
                               ->where('nombre', '<>', 'null')->get();
 
                 $html = view('front.riegohistorial.partials.valvula')
@@ -253,6 +254,7 @@ class RiegoHistorialController extends Controller
         //recupero la valvula, y grabo el tiempo del ultimo riego
         $valvula = Valvula::find($riego->valvula->id);
         $valvula->ultimoriego = $sysdate;
+        $valvula->estado = "habierta";
         $valvula->save();
 
         //activo la valvula y la bomba en arduino

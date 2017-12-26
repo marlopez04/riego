@@ -113,6 +113,10 @@ class FrontController extends Controller
                 if( $riego->programa->riego_s < $diferenciatiempo ){
                     $riego->estado = "esperando";
                     $riego->save();
+
+                    $valvula = Valvula::find($riego->valvula->id);
+                    $valvula->estado = "cerrada";
+                    $valvula->save();
                 }
 
             }else{
@@ -124,6 +128,7 @@ class FrontController extends Controller
                     //pasa a regar, actualizo el ultimo riego de la valvula
                     $valvula = Valvula::find($riego->valvula->id);
                     $valvula->ultimoriego = $sysdate;
+                    $valvula->estado = "habierta";
                     $valvula->save();
                 }
             }
@@ -132,6 +137,9 @@ class FrontController extends Controller
         
         $zonas = Zonariego::all();
         $zonas->load('valvulas');
+
+        $riegos = RiegoHistorial::where('stat', '=', 'online')->get();
+        $riegos->load('valvula', 'programa', 'bomba', 'zonariego');
   
         return view('front.index2')
             ->with('zonas', $zonas)
