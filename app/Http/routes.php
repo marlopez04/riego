@@ -63,6 +63,12 @@ Route::get('/6', function () {
 		'as'   => 'Front.destroy'
 	]);
 
+	Route::resource('arduino', 'ArduinoController');
+	Route::get('arduino/{id}/destroy',[
+		'uses' => 'ArduinoController@destroy',
+		'as'   => 'arduino.destroy'
+	]);
+
 	Route::get('/disparador', [
 	'as' => 'front.disparador',
 	'uses' => 'FrontController@disparador'
