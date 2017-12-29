@@ -72,16 +72,24 @@ class ArduinoController extends Controller
     {
        header('Access-Control-Allow-Origin: *');  
 
+//       $valvulas = Valvula::where('zonariego_id','=',$id)->get();
 
+/*
+        $valvulas = \DB::select("SELECT id as id, 
+                                FROM valvulas
+                                WHERE zonariego_id = '{$id}'");
+*/
+//        dd($valvulas);
         #$id = $_GET['id'];
        #$menu = $_GET['id'];
-       print_r($_GET);
+//       print_r($_GET);
 
         $valvulas = Valvula::find($id);
 
         //dd($valvulas);
 
         return $valvulas->toJson();
+        //return $valvulas->toArray();
     }
 
     /**
