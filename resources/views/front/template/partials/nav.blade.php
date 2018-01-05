@@ -47,8 +47,8 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<ul class="multi-column-dropdown">
-										<li><a href="{{ route('riegohistorial.create')}}">Nuevo programa</a></li>
-										<li><a href="{{ route('riegohistorial.index')}}">Programas</a></li>
+										<li><a href="{{ route('programas.create')}}">Nuevo programa</a></li>
+										<li><a href="{{ route('programas.index')}}">Programas</a></li>
 									</ul>
 								</div>
 							</div>
