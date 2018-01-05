@@ -22,10 +22,29 @@ Route::get('/', [
 */
 
 Route::group(['prefix'=>'/'], function(){
+
+	Route::get('/',[
+		'uses' => 'FrontController@index',
+		'as'   => 'Front.index'
+	]);
+
+	Route::resource('front', 'FrontController');
+	Route::get('front/{id}/destroy',[
+		'uses' => 'FrontController@destroy',
+		'as'   => 'Front.destroy'
+	]);
+
+	Route::get('/disparador', [
+	'as' => 'front.disparador',
+	'uses' => 'FrontController@disparador'
+	]);
 	
+
+/*
 	Route::get('/',['as' => 'front.index', function () {
     return view('front.index');
 	}]);
+*/
 
 	Route::resource('programas', 'ProgramasController');
 	Route::get('programas/{id}/destroy',[
@@ -69,10 +88,6 @@ Route::get('/6', function () {
 		'as'   => 'arduino.destroy'
 	]);
 
-	Route::get('/disparador', [
-	'as' => 'front.disparador',
-	'uses' => 'FrontController@disparador'
-	]);
 
 
 

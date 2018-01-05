@@ -1,5 +1,28 @@
 @extends('front.template.main')
 
+
+@section('head')
+
+<meta http-equiv="refresh" content="5">
+
+<style>
+.progress-bar-warning {
+  background-color: #ee82ee;
+}
+
+h1{
+	color:#000000;
+	text-align: center;
+}
+
+.gantt{
+	color:#000000;
+}
+</style>
+
+@endsection
+
+
 @section('content')
 				
 <div class="monthly-grid">
@@ -12,6 +35,7 @@
 				<div class="contain">									
 				
 								<div class="contain">									
+<!--
 	<table class="table table-striped">
 		<thead>
 			<th>ID</th>
@@ -62,6 +86,7 @@
 						<br>
 						<br>
 						<br>
+-->
 <!--PAGINA FINAL INICIO-->
 
 @foreach($zonas as $zona)
@@ -251,9 +276,6 @@
 @endforeach
 
 
-						<div>
-							<iframe src="http://192.168.1.103" frameborder="0"></iframe>
-						</div>
 
 						</div>
 				</div>
@@ -262,6 +284,8 @@
 		</div>
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<!--
 <script type="text/javascript">
  
 contador = 0;
@@ -338,7 +362,7 @@ $(document).ready(function() {
     setInterval(changeColor, 1000);
 });
 </script>
-
+-->
 
 
 @endsection
