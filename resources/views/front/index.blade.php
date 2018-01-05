@@ -10,47 +10,246 @@
 			<div class="panel-body">
 				<!-- status -->
 				<div class="contain">									
-						<h1 class="black">segundos transcurridos</h1>
-						<h2 class="black">tiempo total</h2>
+				
+								<div class="contain">									
+	<table class="table table-striped">
+		<thead>
+			<th>ID</th>
+			<th>estado</th>
+			<th>zona</th>
+			<th>valvula</th>
+			<th>ultimoriego</th>
+			<th>dif.tiempo</th>
+			<th>Porcentaje</th>
+			<th>Riego S</th>
+			<th>Espera S</th>
+			<th>Sumados</th>
+			<th>programa</th>
+			<th>riego s</th>
+			<th>espera s</th>
+			<th>ciclos</th>
+			<th>bomba</th>
+		</thead>
+		<tbody>
+			@foreach($riegos as $riegohistorial)
+				<tr>
+					<td>{{ $riegohistorial->id }}</td>
+					<td>{{ $riegohistorial->estado }}</td>
+					<td>{{ $riegohistorial->zonariego->descripcion }}</td>
+					<td>{{ $riegohistorial->valvula->nombre }}</td>
+					<td>{{ $riegohistorial->valvula->ultimoriego }}</td>
+					<td>{{ Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) }}</td>
+					@if ($riegohistorial->estado == "esperando")
+						<td>{{ round((((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) - $riegohistorial->programa->riego_s )*100 ) / $riegohistorial->programa->espera_s),0)}}</td>
+					@else
+						<td>{{ round(((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) *100 ) / $riegohistorial->programa->riego_s),0)}}</td>
+					@endif
+					<td>{{ $riegohistorial->programa->riego_s }}</td>
+					<td>{{ $riegohistorial->programa->espera_s }}</td>
+					<td>{{ $riegohistorial->programa->riego_s + $riegohistorial->programa->espera_s}}</td>
+					<td>R = {{ $riegohistorial->programa->riego }} min, E = {{ $riegohistorial->programa->horas_e }}:{{ $riegohistorial->programa->minutos_e }}, Ciclos = {{ $riegohistorial->programa->ciclos }} </td>
+					<td>{{ $riegohistorial->programa->riego_s}}</td>
+					<td>{{ $riegohistorial->programa->espera_s }}</td>
+					<td>{{ $riegohistorial->ciclos }}</td>
+					<td>{{ $riegohistorial->bomba->id }}</td>
+				</tr>
+			@endforeach
+		</tbody>
+	</table>
 
-						<button type="button" class="btn btn-default btn-lg">
-							  <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> VALVULA 1
-						</button>
 
-						<button type="button" class="btn btn-default btn-lg">
-							  <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> VALVULA 2
-						</button>
+						<div class="col-md-11">
+						<br>
+						<br>
+						<br>
+<!--PAGINA FINAL INICIO-->
 
-						<button type="button" class="btn btn-default btn-lg">
-							  <span class="glyphicon glyphicon-circle-arrow-down" aria-hidden="true"></span> VALVULA 3
-						</button>
+@foreach($zonas as $zona)
+	@if($zona->id == 2)
+<div class="soja" style="background:#8fc270; border-radius: 10px;">
 
-						<button type="button" class="btn btn-default btn-lg">
-							  <span class="glyphicon glyphicon-download" aria-hidden="true"></span> VALVULA 4 
-						</button>
-
-						<div class="col-md-12">
-						<div class="gantt">
-						Valvula 1
-						</div>
-
-						<div class="progress">
-						  <div id="prueba" class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
-						  aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
-						    50% (REGANDO)
-						  </div>
-						</div>
-
+<!--PAGINA FINAL INICIO
+<h1>{{ $zona->descripcion}}</h1>
+-->
+	@foreach($zona->valvulas as $valvula)
+			<div class="col-md-12">
+				@if($valvula->estado == "libre")
 					<div class="gantt">
-						Valvula 2
+						{{ $valvula->id}} {{ $valvula->nombre}}
 						</div>
 
-						<div class="progress">
-						  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
-						  aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
-						    60% (EN ESPERA)
-						  </div>
+							<div class="progress">
+							  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+							  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%" data-id="{{ $valvula->id}}">
+							    0 % {{$valvula->estado}}
+							  </div>
+							</div>
+
+				@else
+
+
+
+						@foreach($riegos as $riegohistorial)
+							@if($riegohistorial->valvula_id == $valvula->id)
+
+								<div class="gantt">
+								{{ $valvula->id}} {{ $valvula->nombre}} / R = {{ $riegohistorial->programa->riego }} min, E = {{ $riegohistorial->programa->horas_e }}:{{ $riegohistorial->programa->minutos_e }}, Ciclos = {{ $riegohistorial->ciclos }}/{{ $riegohistorial->programa->ciclos }}
+								</div>
+
+								@if ($riegohistorial->estado == "esperando")
+									<div class="progress">
+									  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+									  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:{{ round((((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) - $riegohistorial->programa->riego_s )*100 ) / $riegohistorial->programa->espera_s),0)}}%" data-id="{{ $valvula->id}}">
+									    {{ round((((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) - $riegohistorial->programa->riego_s )*100 ) / $riegohistorial->programa->espera_s),0)}} % {{$riegohistorial->estado}}
+									  </div>
+									</div>
+								@else
+									<div class="progress">
+										  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+										  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:{{ round(((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) *100 ) / $riegohistorial->programa->riego_s),0)}}%" data-id="{{ $valvula->id}}">
+										    {{ round(((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) *100 ) / $riegohistorial->programa->riego_s),0)}}% ({{$riegohistorial->estado}})
+										  </div>
+										</div>
+								@endif
+							@endif
+
+						@endforeach
+				@endif
+			</div>
+<br>
+<br>
+<br>
+	@endforeach
+	@endif
+@endforeach
+
+</div>
+
+<div class="clearfix">
+	<br>
+</div>
+
+@foreach($zonas as $zona)
+	@if($zona->id == 3)
+<div class="alfalfa" style="background:#ffd64d; border-radius: 10px; border-width:10px; border-color:#FF8C00;">
+
+<!--PAGINA FINAL INICIO
+<h1>{{ $zona->descripcion}}</h1>
+-->	
+	@foreach($zona->valvulas as $valvula)
+			<div class="col-md-12">
+				@if($valvula->estado == "libre")
+					<div class="gantt">
+						{{ $valvula->id}} {{ $valvula->nombre}}
 						</div>
+
+							<div class="progress">
+							  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+							  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%" data-id="{{ $valvula->id}}">
+							    0 % {{$valvula->estado}}
+							  </div>
+							</div>
+
+				@else
+
+						@foreach($riegos as $riegohistorial)
+							@if($riegohistorial->valvula_id == $valvula->id)
+
+								<div class="gantt">
+								{{ $valvula->id}} {{ $valvula->nombre}} /  R = {{ $riegohistorial->programa->riego }} min, E = {{ $riegohistorial->programa->horas_e }}:{{ $riegohistorial->programa->minutos_e }}, Ciclos = {{ $riegohistorial->ciclos }}/{{ $riegohistorial->programa->ciclos }}
+								</div>
+
+								@if ($riegohistorial->estado == "esperando")
+									<div class="progress">
+									  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+									  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:{{ round((((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) - $riegohistorial->programa->riego_s )*100 ) / $riegohistorial->programa->espera_s),0)}}%" data-id="{{ $valvula->id}}">
+									    {{ round((((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) - $riegohistorial->programa->riego_s )*100 ) / $riegohistorial->programa->espera_s),0)}} % {{$riegohistorial->estado}}
+									  </div>
+									</div>
+								@else
+									<div class="progress">
+										  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+										  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:{{ round(((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) *100 ) / $riegohistorial->programa->riego_s),0)}}%" data-id="{{ $valvula->id}}">
+										    {{ round(((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) *100 ) / $riegohistorial->programa->riego_s),0)}}% ({{$riegohistorial->estado}})
+										  </div>
+										</div>
+								@endif
+							@endif
+
+						@endforeach
+				@endif
+			</div>
+<br>
+<br>
+<br>
+	@endforeach
+	@endif
+@endforeach
+
+</div>
+
+
+<div class="clearfix">
+	<br>
+</div>
+
+
+@foreach($zonas as $zona)
+	@if($zona->id == 4)
+<div class="girasol" style="background:#f4f186; border-radius: 10px; border-width:10px; border-color:#FFD700;">
+
+<!--PAGINA FINAL INICIO
+<h1>{{ $zona->descripcion}}</h1>
+-->
+	@foreach($zona->valvulas as $valvula)
+			<div class="col-md-12">
+
+				@if($valvula->estado == "libre")
+					<div class="gantt">
+						{{ $valvula->id}} {{ $valvula->nombre}}
+						</div>
+
+							<div class="progress">
+							  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+							  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%" data-id="{{ $valvula->id}}">
+							    0 % {{$valvula->estado}}
+							  </div>
+							</div>
+
+				@else
+
+						@foreach($riegos as $riegohistorial)
+							@if($riegohistorial->valvula_id == $valvula->id)
+								<div class="gantt">
+								{{ $valvula->id}} {{ $valvula->nombre}} /  R = {{ $riegohistorial->programa->riego }} min, E = {{ $riegohistorial->programa->horas_e }}:{{ $riegohistorial->programa->minutos_e }}, Ciclos = {{ $riegohistorial->ciclos }}/{{ $riegohistorial->programa->ciclos }}
+								</div>
+								@if ($riegohistorial->estado == "esperando")
+									<div class="progress">
+									  <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar"
+									  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:{{ round((((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) - $riegohistorial->programa->riego_s )*100 ) / $riegohistorial->programa->espera_s),0)}}%" data-id="{{ $valvula->id}}">
+									    {{ round((((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) - $riegohistorial->programa->riego_s )*100 ) / $riegohistorial->programa->espera_s),0)}} % {{$riegohistorial->estado}}
+									  </div>
+									</div>
+								@else
+									<div class="progress">
+										  <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+										  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:{{ round(((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) *100 ) / $riegohistorial->programa->riego_s),0)}}%" data-id="{{ $valvula->id}}">
+										    {{ round(((Carbon\Carbon::parse($sysdate)->diffInSeconds(Carbon\Carbon::parse($riegohistorial->valvula->ultimoriego)) *100 ) / $riegohistorial->programa->riego_s),0)}}% ({{$riegohistorial->estado}})
+										  </div>
+										</div>
+								@endif
+							@endif
+
+						@endforeach
+				@endif
+			</div>
+<br>
+<br>
+<br>
+	@endforeach
+	@endif
+@endforeach
+
 
 						<div>
 							<iframe src="http://192.168.1.103" frameborder="0"></iframe>
@@ -61,12 +260,6 @@
 			</div>
 			<!-- status -->
 		</div>
-	</div>
-
-<!-- insumos inicio -->
-
-
-
 
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
@@ -117,12 +310,6 @@ $(document).ready(function() {
 
     	porcentajeS = "width:" + porcentaje + "%";
     	display = porcentaje + "% (REGANDO)"
-
-            $('h1').text(contador);
-            $('h2').text(tiempoD);
-            $("#prueba").attr("aria-valuenow", porcentaje)
-            $("#prueba").attr("style", porcentajeS);
-            $("#prueba").html(display);
 
 			if (porcentaje == 100) {
 				contador = 0;

@@ -49,8 +49,6 @@ h1{
 
 <body>
 	<!-- /inner_content -->
-	<div class="inner_content_info_agileits">
-		<div class="container">
 
 <div class="monthly-grid">
 	<div class="panel panel-widget">
@@ -338,9 +336,6 @@ h1{
 	</div>
 
 <!-- insumos inicio -->
-
-		</div>
-	</div>
 	<!-- //mid-services -->
 	<!-- js -->
 	<script type="text/javascript" src="{{asset('plugins/rrhhtemplate/js/jquery-2.1.4.min.js')}}"></script>

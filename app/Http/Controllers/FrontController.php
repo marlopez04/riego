@@ -23,7 +23,19 @@ class FrontController extends Controller
      */
     public function index()
     {
-        return view('front.index');
+        $sysdate = Carbon::now(); //recupero el sysdate
+        
+        $zonas = Zonariego::all();
+        $zonas->load('valvulas');
+
+        $riegos = RiegoHistorial::where('stat', '=', 'online')->get();
+        $riegos->load('valvula', 'programa', 'bomba', 'zonariego');
+  
+        return view('front.index')
+            ->with('zonas', $zonas)
+            ->with('sysdate', $sysdate)
+            ->with('riegos', $riegos);
+
     }
 
     /**
