@@ -34,6 +34,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	    rel='stylesheet' type='text/css'>
 
 	@yield('head')
+	<style>
+	.inner_content_info_agileits { padding: 2em 0;}
+	.progress-bar-warning {
+  background-color: #ee82ee;
+}
+
+	</style>
 </head>
 
 <body>

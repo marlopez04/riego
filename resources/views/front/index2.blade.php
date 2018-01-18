@@ -36,6 +36,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   background-color: #ee82ee;
 }
 
+.panel-body {
+	line-height: 2em;
+}
+
+.inner_content_info_agileits { padding: 10px;}
 h1{
 	color:#000000;
 	text-align: center;
@@ -52,9 +57,7 @@ h1{
 
 <div class="monthly-grid">
 	<div class="panel panel-widget">
-		<div class="panel-title">
-			RIEGO 	  
-		</div>
+
 			<div class="panel-body">
 				<!-- status -->
 				<div class="contain">									
@@ -118,8 +121,9 @@ h1{
 <div class="soja" style="background:#8fc270; border-radius: 10px;">
 
 <!--PAGINA FINAL INICIO
-<h1>{{ $zona->descripcion}}</h1>
+
 -->
+<h1>{{ $zona->descripcion}}</h1>
 	@foreach($zona->valvulas as $valvula)
 			<div class="col-md-12">
 				@if($valvula->estado == "libre")
@@ -183,8 +187,9 @@ h1{
 <div class="alfalfa" style="background:#ffd64d; border-radius: 10px; border-width:10px; border-color:#FF8C00;">
 
 <!--PAGINA FINAL INICIO
-<h1>{{ $zona->descripcion}}</h1>
+
 -->	
+<h1>{{ $zona->descripcion}}</h1>
 	@foreach($zona->valvulas as $valvula)
 			<div class="col-md-12">
 				@if($valvula->estado == "libre")
@@ -248,8 +253,10 @@ h1{
 <div class="girasol" style="background:#f4f186; border-radius: 10px; border-width:10px; border-color:#FFD700;">
 
 <!--PAGINA FINAL INICIO
-<h1>{{ $zona->descripcion}}</h1>
+
 -->
+
+<h1>{{ $zona->descripcion}}</h1>
 	@foreach($zona->valvulas as $valvula)
 			<div class="col-md-12">
 

@@ -94,8 +94,8 @@ h1{
 <div class="soja" style="background:#8fc270; border-radius: 10px;">
 
 <!--PAGINA FINAL INICIO
-<h1>{{ $zona->descripcion}}</h1>
 -->
+<h1>{{ $zona->descripcion}}</h1>
 	@foreach($zona->valvulas as $valvula)
 			<div class="col-md-12">
 				@if($valvula->estado == "libre")
@@ -159,8 +159,8 @@ h1{
 <div class="alfalfa" style="background:#ffd64d; border-radius: 10px; border-width:10px; border-color:#FF8C00;">
 
 <!--PAGINA FINAL INICIO
-<h1>{{ $zona->descripcion}}</h1>
 -->	
+<h1>{{ $zona->descripcion}}</h1>
 	@foreach($zona->valvulas as $valvula)
 			<div class="col-md-12">
 				@if($valvula->estado == "libre")
@@ -224,8 +224,8 @@ h1{
 <div class="girasol" style="background:#f4f186; border-radius: 10px; border-width:10px; border-color:#FFD700;">
 
 <!--PAGINA FINAL INICIO
-<h1>{{ $zona->descripcion}}</h1>
 -->
+<h1>{{ $zona->descripcion}}</h1>
 	@foreach($zona->valvulas as $valvula)
 			<div class="col-md-12">
 
