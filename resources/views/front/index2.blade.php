@@ -62,7 +62,7 @@ h1{
 				<!-- status -->
 				<div class="contain">									
 
-<!--
+
 	<table class="table table-striped">
 		<thead>
 			<th>ID</th>
@@ -107,7 +107,7 @@ h1{
 			@endforeach
 		</tbody>
 	</table>
--->
+
 
 	
 						<div class="col-md-11">

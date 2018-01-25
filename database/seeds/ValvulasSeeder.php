@@ -12,7 +12,7 @@ class ValvulasSeeder extends Seeder
     public function run()
     {
         DB::table('valvulas')->insert([
-			'direccion'     => 'valvula nula',
+			'direccion'     => 0,
 			'descripcion'     => 'valvula nula',
 			'nombre'    => 'null',
 			'estado'     => 'libre',
@@ -21,7 +21,7 @@ class ValvulasSeeder extends Seeder
 			'zonariego_id'     => '1'
 			]);
         DB::table('valvulas')->insert([
-			'direccion'     => '192.168.1.20/valvula1s',
+			'direccion'     => 1,
 			'descripcion'     => 'valvula 1s',
 			'nombre'    => 'valvula 1s',
 			'estado'     => 'libre',
@@ -29,7 +29,7 @@ class ValvulasSeeder extends Seeder
 			'zonariego_id'     => '2'
 			]);
         DB::table('valvulas')->insert([
-			'direccion'     => '192.168.1.20/bomba1a',
+			'direccion'     => 2,
 			'descripcion'     => 'valvula 2s',
 			'nombre'    => 'valvula 2s',
 			'estado'     => 'libre',
@@ -37,29 +37,12 @@ class ValvulasSeeder extends Seeder
 			'zonariego_id'     => '2'
 			]);
         DB::table('valvulas')->insert([
-			'direccion'     => '192.168.1.20/bomba1a',
-			'descripcion'     => 'bomba 1a',
-			'nombre'    => 'valvula 1a',
+			'direccion'     => 1,
+			'descripcion'     => 'valvula 3s',
+			'nombre'    => 'valvula 3s',
 			'estado'     => 'libre',
-			'bomba_id'     => '3',
-			'zonariego_id'     => '3'
-			]);
-        DB::table('valvulas')->insert([
-			'direccion'     => '192.168.1.20/bomba1g',
-			'descripcion'     => 'bomba 1g',
-			'nombre'    => 'valvula 1a',
-			'estado'     => 'libre',
-			'bomba_id'     => '4',
+			'bomba_id'     => '2',
 			'zonariego_id'     => '2'
-			]);
-
-        DB::table('valvulas')->insert([
-			'direccion'     => '192.168.1.20/bomba1g',
-			'descripcion'     => 'bomba 1g',
-			'nombre'    => 'valvula 1g',
-			'estado'     => 'libre',
-			'bomba_id'     => '4',
-			'zonariego_id'     => '4'
 			]);
     }
 }

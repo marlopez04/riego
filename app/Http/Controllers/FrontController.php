@@ -132,10 +132,11 @@ class FrontController extends Controller
                             $riegonuevo = new Riegohistorial($riego->all());
                             $riegonuevo->programa_id = $riego->programa->programasiguiente;
                             $riegonuevo->ciclos = 1;
+							$riegonuevo->stat = "online";
                             //pasa a regar, actualizo el ultimo riego de la valvula
                             $valvula = Valvula::find($riego->valvula->id);
                             $valvula->ultimoriego = $sysdate;
-                            $valvula->estado = "habierta";
+                            $valvula->estado = "abierta";
                             $valvula->save();
 
                         }else{
@@ -171,7 +172,7 @@ class FrontController extends Controller
                                 //pasa a regar, actualizo el ultimo riego de la valvula
                                 $valvula = Valvula::find($riego->valvula->id);
                                 $valvula->ultimoriego = $sysdate;
-                                $valvula->estado = "habierta";
+                                $valvula->estado = "abierta";
                                 $valvula->save();
                             }
          

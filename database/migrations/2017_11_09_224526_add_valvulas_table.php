@@ -14,11 +14,11 @@ class AddValvulasTable extends Migration
     {
         Schema::create('valvulas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('direccion');
+            $table->integer('direccion');
             $table->string('descripcion');
             $table->string('nombre');
             $table->timestamp('ultimoriego');
-            $table->enum('estado',['habierta', 'cerrada', 'libre'])->default('libre');
+            $table->enum('estado',['abierta', 'cerrada', 'libre'])->default('libre');
             $table->enum('stat',['offline', 'online'])->default('online');
             $table->integer('bomba_id')->unsigned();
             $table->foreign('bomba_id')->references('id')->on('bombas');
